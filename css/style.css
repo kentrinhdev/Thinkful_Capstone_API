@@ -48,7 +48,7 @@ ul, li {
 .navigation {
   height: 130px;
   line-height: 3rem;
-  background: url('/img/bg.png');
+  background: url('/img/bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -164,7 +164,7 @@ ul, li {
   width: 100%;
   height: 100%;
   padding: 15px;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   /* background: linear-gradient(to bottom right, #232526, #414345); */
 }
 
@@ -195,6 +195,14 @@ ul, li {
 .box4 {
   padding-bottom: 0px;
   margin-bottom: 0px;
+}
+
+.rule-box {
+  display: none;
+}
+
+.clue-box {
+  display: none;
 }
 
 .clue-img {
@@ -230,6 +238,32 @@ ul, li {
 
 .row-last {
   height: 100vh;
+}
+
+.find-box-wrap {
+  width: 100vw;
+  height: 70px;
+  padding-top: 10px;
+  margin: 0;
+  text-align: center;
+  background-image: linear-gradient(to bottom right, red, #ED8F03);
+  bottom: 20%; /* 15% */
+  right: 0px;
+  display: block;
+  position: fixed;
+  z-index: 99;
+}
+
+.find-box {
+  width: 90vw;
+  height: 50px;
+  font-size: 1.5rem;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgba(255,255,255,0.0);
+  border: none;
+  border-bottom: 1px solid white;
 }
 
 

@@ -49,7 +49,7 @@
             </div>
 
             <div class="subnav-date-wrap">
-              <span class="subnav-date" id="subnav-date" name="subnav-date">TIME LEFT: 99 H | 99 M | 99 S</span>
+              <span class="subnav-date" id="subnav-date" name="subnav-date">TIME LEFT: <span class="subnav-timer" id="subnav-timer">0:00</span></span>
             </div>
            
           </div>
@@ -63,13 +63,15 @@
     <!--------------------------------------------->
     <!------------------TOP three------------------>
     <!--------------------------------------------->
+<div class="rule-box" id="rule-box">
+
     <div class="row">
       <div class="twelve columns">
-        <div class="box3" id="rule-box">
+        <div class="box3">
           <h3 class="rule-title">Rules of Game Play</h3>
           <p class="rule-instructions game-play" id="game-rules">
-              Sed ac diam aliquet, consequat purus sed, condimentum tortor. Duis enim diam, fringilla vel laoreet at, dictum nec ipsum. 
-              Vestibulum lobortis urna sed nulla fermentum auctor.
+              <!-- Sed ac diam aliquet, consequat purus sed, condimentum tortor. Duis enim diam, fringilla vel laoreet at, dictum nec ipsum. 
+              Vestibulum lobortis urna sed nulla fermentum auctor. -->
           </p>
 
           <div class="clue-btn-wrap">
@@ -78,6 +80,8 @@
         </div>
       </div>
     </div>
+
+</div>
     <!--------------------------------------------->
     <!------------------END three------------------>
     <!--------------------------------------------->
@@ -85,7 +89,7 @@
     <!--------------------------------------------->
     <!-------------------TOP two------------------->
     <!--------------------------------------------->
-<div id="clue-box">
+<div class="clue-box" id="clue-box">
 
     <div class="row row-first">
       <div class="col-six clue-height">
@@ -102,7 +106,7 @@
         <div class="box4">
             <h3 class="rule-title">Clue # 1 | Image</h3>
             <div class="clue-img-wrap">
-              <img class="clue-img" src="/img/img1.jpg" />
+              <img class="clue-img" src="/img/img1.gif" />
             </div>
             <div class="clue-btn-wrap">
               <!-- In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
@@ -123,12 +127,9 @@
     <!--------------------------------------------->
     <!-------------------END two------------------->
     <!--------------------------------------------->
-
-    
-    <!--------------------------------------------->
-    <!------------------END five------------------->
-    <!--------------------------------------------->
-  <!-- </div>container -->
+    <div class="find-box-wrap" id="find-box-wrap">
+      <input class="find-box" id="find-box" name="find-box" type="text" placeholder="Key word to start hunt?" autofocus="">
+    </div>
 
   <!-- /////////////////////////////////////////// -->
 
@@ -139,6 +140,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/js/store.js"></script>
   <script src="/js/app.js"></script>
-  <script src="index.js"></script>
 </body>
 </html>
