@@ -1,0 +1,125 @@
+.col-one {
+	width: 6.5%;
+	float:left;
+	margin-left: 2%;
+}
+
+.col-two {
+	width: 15%;
+	float:left;
+	margin-left: 2%;
+
+}
+
+.col-three {
+	width: 23.5%;
+	float:left;
+	margin-left: 2%;
+}
+
+.col-four {
+	width: 32%;
+	float:left;
+	margin-left: 2%;
+}
+
+.col-five {
+	width: 40.5%;
+	margin-left: 2%;
+	float:left;
+}
+
+.col-six {
+	width: 49%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-seven {
+	width: 57.5%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-eight {
+	width: 66%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-nine {
+	width: 74.5%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-ten {
+	width: 83%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-eleven {
+	width: 91.5%;
+	float: left;
+	margin-left: 2%;
+}
+
+.col-twelve {
+	width: 100%; /*Set the width of the entire website here */
+	margin-right: auto;
+	margin-left: auto;
+}
+.col-seven:first-child, .col-eight:first-child, .col-nine:first-child, 
+.col-ten:first-child, .col-eleven:first-child, .col-five:first-child, 
+.col-four:first-child, .col-three:first-child, .col-two:first-child, 
+.col-one:first-child, .col-six:first-child { 
+	margin-left: 0; /* This line of code makes the left-most column align to the left of the screen */
+}
+
+
+.row {
+	width: 100%;
+	padding: 0px;
+  margin: 0px;
+  clear: both; /* Clear creates new styles for the next row */
+}
+
+
+.clear {
+width: 0px;
+display: block;
+height: 0px;
+visibility: hidden;
+clear: both;
+overflow: hidden
+}
+.clearfix:after {
+line-height: 0;
+width: 0px;
+display: block;
+height: 0px;
+visibility: hidden;
+clear: both;
+font-size: 0px;
+content: ' '
+}
+.clearfix {
+display: inline-block
+}
+* html .clearfix {
+height: 1%
+}
+.clearfix {
+display: block
+}
+
+@media screen and (max-width: 1025px) {
+  .col-one, .col-two, .col-three,
+  .col-four, .col-five, .col-six, 
+  .col-seven, .col-eight, .col-nine, 
+  .col-ten, .col-eleven {
+    width: 100%;
+    margin-left: 0%;
+  }
+}

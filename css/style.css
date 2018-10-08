@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Pirata+One');
+@import url('https://fonts.googleapis.com/css?family=Metal+Mania|Trade+Winds');
+
+@font-face {
+  font-family: 'windlass';
+  src: url('windlass.ttf'); /* IE9 Compat Modes */
+  src: url('windlass.ttf?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('windlass.ttf') format('woff2'), /* Super Modern Browsers */
+       url('windlass.ttf') format('woff'), /* Pretty Modern Browsers */
+       url('windlass.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+:root {
+  --font-family: 'Lato', sans-serif;
+}
+
+/* GLOBAL ELEMENTS */
+html, body {
+  min-width: 315px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-family: 'Lato';
+  color: steelblue;
+  background: linear-gradient(to bottom right, #232526, #414345);
+}
+a:link {
+  text-decoration: none;
+  color: white;
+}
+ul, li {
+  list-style: none;
+}
+* {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.container-intro {
+  display: none;
+}
+
+/* MAIN STYLING */
+.navigation {
+  height: 130px;
+  line-height: 3rem;
+  background: url('/img/bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  box-shadow: 0px 20px 30px -15px black;
+  -moz-box-shadow: 0px 20px 30px -15px black;
+  -webkit-box-shadow: 0px 20px 30px -15px black;
+  /* border-bottom: 5px solid rgba(0, 0, 0, 0.3); */
+  position: relative;
+  /* position: fixed; */
+  z-index: 2;
+}
+
+.nav-title {
+  /* font-family: 'Pirata One', cursive; */
+  /* font-family: 'Trade Winds', cursive; */
+  font-family: 'windlass', cursive;
+  font-size: 2.1rem; /* 1.2rem */
+  background: linear-gradient(to bottom right, red, yellow);
+  background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.nav-signin {
+  font-size: 0.8rem;
+  color: white;
+}
+
+.left-block {
+  width: 60%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.right-block {
+  width: 39%;
+  padding-right: 15px;
+  text-align: right;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.right-block a:hover {
+  color: #4CAF50; /* Green */;
+}
+
+.subnav-container {
+  width: 100%;
+  min-width: 315px;
+  margin-bottom: 0px; /* 15px */
+  background-image: linear-gradient(to bottom right, red, #ED8F03);
+  /* position: fixed; */
+  z-index: 1;
+}
+
+.subnav-wrap {
+  min-width: 315px;
+  height: 100%; /* 20/25vh */
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: url('');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.subnav-title {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+/* Title end of 's game */
+.subnav-span {
+  color: white;
+}
+
+.subnav-date-wrap {
+  padding-bottom: 5px;
+  /* padding-right: 25px; */
+  /* margin-bottom: 25px; */
+  text-align: center;
+}
+
+.subnav-date {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: skyblue;
+  border-top: 1px solid skyblue;
+  border-bottom: 1px solid skyblue;
+}
+
+.nav-player-name {
+  color: #fff;
+  padding-left: 15px;
+  padding-right: 0.0rem;
+}
+
+.nav-player-name-end {
+  font-weight: bold;
+  color: lightseagreen !important; /* Green */
+}
+
+
+
+
+.box3, .box4, .box5 {
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  margin-bottom: 40px;
+  /* background: linear-gradient(to bottom right, #232526, #414345); */
+}
+
+.rule-title {
+  font-family: 'windlass', cursive;
+  font-size: 1.2rem;
+  color: #f12711;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.game-play {
+  margin-bottom: 15px;
+}
+
+.rule-instructions {
+  line-height: 2rem;
+  font-size: 1.1rem;
+  color: goldenrod;
+}
+
+.clue-img-wrap {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.box4 {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+.clue-img {
+  width: 90vw;
+}
+
+.clue-btn-wrap {
+  text-align: center;
+}
+
+.clue-btn {
+  width: 90vw;
+  height: 40px;
+  font-family: 'windlass', cursive;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+  background: #f12711;
+  border-radius: 3px;
+  border: none;
+}
+
+.clue-btn:hover {
+  color: gold;
+  background-image: linear-gradient(to bottom right, red, #ED8F03);
+}
+
+.row-first {
+  padding-bottom: 40px;
+  margin-bottom: 25px;
+  /* border-bottom: 5px solid rgba(250, 5, 10, 0.5); */
+}
+
+.row-last {
+  height: 100vh;
+}
+
+
+
+
+
+
+/* FOOTER SECTION */
+footer {
+  width: 100%;
+  min-width: 315px;
+  height: 5vh;
+  line-height: 5vh;
+  text-align: center;
+  font-size: 0.6rem;
+  color: white;
+  opacity: 0.9;
+  left: 0;
+  bottom: 0;
+  background-image: linear-gradient(to bottom right, #f12711, #f5af19);
+  position: fixed;
+}
+
+/* SMALLER SCREENS */
+@media only screen and (min-width: 768px) {
+  /* nav { */
+    /* display: inline-block; */
+  /* } */
+
+  .button-submit-yes {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .button-submit-yes {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .clue-img {
+    width: 45vw;
+  }
+}

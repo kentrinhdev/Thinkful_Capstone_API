@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Hero Hunter Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=11">
+  <link rel="stylesheet" type="text/css" href="/css/reset.css" />
+  <link rel="stylesheet" type="text/css" href="/css/grid.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+<body>
+  <!-- <div class="container" id="main-app"> -->
+    <!--------------------------------------------->
+    <!-------------------TOP nav------------------->
+    <!--------------------------------------------->
+    <div class="row">
+      <div class="twelve columns">
+        <nav class="navigation" role="navigation">
+          <div class="left-block">
+            <header role="banner">
+              <h1 class="nav-title" id="nav-title">HERO HUNTER</h1>
+            </header>
+          </div>
+
+          <div class="right-block">
+            <span class="nav-signin"><a href="#">Sign Up</a> | <a href="#">Log In</a></span>
+          </div>
+        </nav>
+      </div><!-- col-12 -->
+    </div><!-- row -->
+    <!--------------------------------------------->
+    <!-------------------END nav------------------->
+    <!--------------------------------------------->
+
+    <!--------------------------------------------->
+    <!-------------------TOP one------------------->
+    <!--------------------------------------------->
+    <div class="row">
+      <div class="twelve columns">
+        <div class="subnav-container">
+          <div class="subnav-wrap">
+
+            <div class="subnav-title">
+              <span class="nav-player-name" id="nav-player-name">Name Name</span>
+              <span class="subnav-span">'s</span>
+              <span class="subnav-span">game</span>
+            </div>
+
+            <div class="subnav-date-wrap">
+              <span class="subnav-date" id="subnav-date" name="subnav-date">TIME LEFT: 99 H | 99 M | 99 S</span>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--------------------------------------------->
+    <!-------------------END one------------------->
+    <!--------------------------------------------->
+
+    <!--------------------------------------------->
+    <!------------------TOP three------------------>
+    <!--------------------------------------------->
+    <div class="row">
+      <div class="twelve columns">
+        <div class="box3" id="rule-box">
+          <h3 class="rule-title">Rules of Game Play</h3>
+          <p class="rule-instructions game-play" id="game-rules">
+              Sed ac diam aliquet, consequat purus sed, condimentum tortor. Duis enim diam, fringilla vel laoreet at, dictum nec ipsum. 
+              Vestibulum lobortis urna sed nulla fermentum auctor.
+          </p>
+
+          <div class="clue-btn-wrap">
+            <button class="clue-btn" id="play-btn">PLAY</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--------------------------------------------->
+    <!------------------END three------------------>
+    <!--------------------------------------------->
+
+    <!--------------------------------------------->
+    <!-------------------TOP two------------------->
+    <!--------------------------------------------->
+<div id="clue-box">
+
+    <div class="row row-first">
+      <div class="col-six clue-height">
+        <div class="box4">
+            <h3 class="rule-title">Clue # 1</h3>
+            <p class="rule-instructions" id="clue-1">
+              In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
+              renowned for my swordsmanship and using signature swords of my own design. Who am I?
+            </p>
+        </div>
+      </div>
+
+      <div class="col-six">
+        <div class="box4">
+            <h3 class="rule-title">Clue # 1 | Image</h3>
+            <div class="clue-img-wrap">
+              <img class="clue-img" src="/img/img1.jpg" />
+            </div>
+            <div class="clue-btn-wrap">
+              <!-- In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
+              renowned for my swordsmanship and using signature swords of my own design. Who am I? -->
+              <!-- <button class="clue-btn">HUNT</button> -->
+            </div>
+        </div>
+      </div>
+
+      <div class="clue-btn-wrap">
+        <!-- In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
+        renowned for my swordsmanship and using signature swords of my own design. Who am I? -->
+        <button class="clue-btn" id="hunt-btn">HUNT</button>
+      </div>
+    </div><!-- row -->
+
+</div>
+    <!--------------------------------------------->
+    <!-------------------END two------------------->
+    <!--------------------------------------------->
+
+    
+    <!--------------------------------------------->
+    <!------------------END five------------------->
+    <!--------------------------------------------->
+  <!-- </div>container -->
+
+  <!-- /////////////////////////////////////////// -->
+
+  <footer class="footer" id="footer" role="contentinfo">
+    <small>&copy; Copyright 2018 Ken Trinh</small>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/js/store.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
