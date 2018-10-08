@@ -19,7 +19,8 @@ function countdownTimer() {
     // If the count down is over, write some text 
     if (distance < 0) {
       clearInterval(x);
-      document.getElementById("demo").innerHTML = "EXPIRED";
+      $('#rule-box').toggle(false);
+      $('#clue-box').toggle(false);
     }
 
   }, 1000);
@@ -35,7 +36,7 @@ function toggleRules() {
 function handlePlayClick() {
   $('#play-btn').on('click', function() {
     countdownTimer();
-    
+
     $('#rule-box').slideUp(2000);
     $('#clue-box').fadeIn(3000);
     $('#clue-1').html(STORE.clue1);
