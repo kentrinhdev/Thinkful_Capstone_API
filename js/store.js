@@ -6,3 +6,7 @@ const STORE = {
   clue2: "In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member renowned for my swordsmanship and using signature swords of my own design. At the end of World War II, the Nazis attempt to open a portal to a paranormal dimension in order to defeat the Allies, but are only able to summon a baby demon who is rescued by Allied forces. Sixty years later, the Bureau of Paranormal Research and Defense protects America against dark forces. Which movie am I?",
   clue3: "",
 };
+
+const API = {
+  key: "07ce68f63281224c6c07468a43c3f3947c29060f",
+};

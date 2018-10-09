@@ -1,8 +1,8 @@
 'use strict';
 
-function getDataFromApi(searchTerm, callback) {
+function getDataFromApi(searchTerm) {
   let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
-  let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
+  let k = API.key;
   let l = "&limit=5";
   let f = "&filter=name:";
   let s = `${searchTerm}`;
@@ -10,6 +10,33 @@ function getDataFromApi(searchTerm, callback) {
   var search = top + k + l + f + s + end;
 
   // $.getJSON(search, callback);
+  $.getJSON(search, function(data) {
+    var r = data.results;
+    renderResult(r);
+  });
+}
+
+function renderResult(result) {
+  for (let i = 0; i < result.length; i++) {
+    var img = result[i].image.original_url;
+    var name = result[i].name;
+    var date = result[i].release_date;
+
+    $('#js-result').append(
+      `
+        <div class="returned-result">
+          <div class="result-img">
+            <a id="img-link" href=${img} target="_blank"><img class="img-thumb" src=${img} /></a>
+          </div>
+
+          <div class="rule-instructions result-info">
+            <h4 class="video-title">Movie Title: ${name}</h4>
+            <p class="video-description">Release Date: ${date}</p>
+          </div>
+        </div>
+      `
+    );
+  }
 }
 
 function handleSubmit() {
@@ -19,73 +46,12 @@ function handleSubmit() {
     if (queryTerm == "" || queryTerm == " " || queryTerm == null) {
       return false;
     } else {
-      // getDataFromApi(queryTerm, displaySearchData);
-
-      let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
-      let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
-      let l = "&limit=5";
-      let f = "&filter=name:";
-      let s = `${queryTerm}`;
-      let end = "&format=json";
-      var search = top + k + l + f + s + end;
-
-      $.getJSON(search, function(data) {
-        var r = data.results;
-
-        renderResult(r);
-      });
-
-      // getDataFromApi(queryTerm, renderResult);
+      getDataFromApi(queryTerm);
     }
   });
 }
 
-function renderResult(result) {
-  // console.log(result);
 
-  // var img = result.image.original_url;
-  // var name = result.name;
-  // var date = result.release_date;
-  // var studio = result.studios.name;
-  // var writer = result.writers.name;
-
-  // console.log(img);
-  // console.log(name);
-  // console.log(date);
-  // console.log(studio);
-  // console.log(writer);
-
-  for (let i = 0; i < result.length; i++) {
-    var img = result[i].image.original_url;
-    // console.log(result[i].image.original_url);
-
-    var name = result[i].name;
-    // console.log(result[i].name);
-
-    var date = result[i].release_date;
-    // console.log(result[i].release_date);
-
-    $('#js-result').append(
-      `
-        <div class="returned-result">
-          <div class="result-img">
-            <a id="img-link" href=${img} target="_blank"><img class="img-link" src=${img} /></a>
-          </div>
-
-          <div class="result-info">
-            <h4 class="video-title">Movie Title: ${name}</h4>
-            <p class="video-description">Movie Release Date: ${date}</p>
-            
-          </div>
-        </div>
-      `
-    );
-  }
-
-}
-
-
-// NEW CRAP
 
 
 
