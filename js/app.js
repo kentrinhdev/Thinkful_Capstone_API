@@ -1,7 +1,7 @@
 'use strict';
 
 function getDataFromApi(searchTerm) {
-  let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
+  let top = API.url;
   let k = API.key;
   let l = "&limit=5";
   let f = "&filter=name:";
@@ -21,17 +21,27 @@ function renderResult(result) {
     var img = result[i].image.original_url;
     var name = result[i].name;
     var date = result[i].release_date;
+    var deck = result[i].deck;
+
+    // var desc = result[i].description;
+    // <div class="movie-desc">Story: ${desc}</div>
 
     $('#js-result').append(
       `
-        <div class="returned-result">
-          <div class="result-img">
-            <a id="img-link" href=${img} target="_blank"><img class="img-thumb" src=${img} /></a>
+        <div class="row js-result-row">
+          <div class="col-six">
+            <div class="result-img">
+              <a id="img-link" href=${img} target="_blank"><img class="img-thumb" src=${img} /></a>
+            </div>
           </div>
 
-          <div class="rule-instructions result-info">
-            <h4 class="video-title">Movie Title: ${name}</h4>
-            <p class="video-description">Release Date: ${date}</p>
+          <div class="col-six">
+            <div class="rule-instructions result-info">
+              <h4 class="movie-title">Movie Title: ${name}</h4>
+              <p class="movie-date">Release Date: ${date}</p>
+              <p class="movie-deck">Summary: ${deck}</p>
+              
+            </div>
           </div>
         </div>
       `

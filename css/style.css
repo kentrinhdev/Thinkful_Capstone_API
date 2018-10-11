@@ -189,11 +189,6 @@ ul, li {
   color: goldenrod;
 }
 
-.clue-img-wrap {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
 .box4 {
   padding-bottom: 0px;
   margin-bottom: 0px;
@@ -205,6 +200,11 @@ ul, li {
 
 .clue-box {
   display: none;
+}
+
+.clue-img-wrap {
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .clue-img {
@@ -276,24 +276,43 @@ ul, li {
   text-align: center;
 }
 
+.js-result-row {
+  width: 100%;
+  height: auto;
+  min-height: 635px; /* 600px / 530px */
+  margin-bottom: 25px;
+  border-bottom: 1px solid gainsboro;
+}
+
 .js-result {
   text-align: center;
+}
+
+.result-img {
+  width: 100%;
+  height: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+  background: black;
 }
 
 .result-info {
   text-align: left;
 }
 
-.result-img {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 10px;
-}
-
 .img-thumb {
-  width: 275px;
-  height: 425px;
+  width: 275px; /* 275px */
+  height: 425px; /* 425px */
 }
+/*
+.movie-desc {
+  width: 100%;
+  height: 355px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+*/
 
 
 
@@ -339,6 +358,8 @@ footer {
   .clue-img {
     width: 45vw;
   }
+  .js-result-row {
+    height: 485px;
+    min-height: 150px;
+  }
 }
-
-/* NEW CRAP */

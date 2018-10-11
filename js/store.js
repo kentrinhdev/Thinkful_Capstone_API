@@ -8,5 +8,6 @@ const STORE = {
 };
 
 const API = {
+  url: "https://comicvine.gamespot.com/api/movies/?api_key=",
   key: "07ce68f63281224c6c07468a43c3f3947c29060f",
 };
