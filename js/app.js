@@ -6,14 +6,40 @@ function getDataFromApi(searchTerm) {
   let l = "&limit=5";
   let f = "&filter=name:";
   let s = `${searchTerm}`;
-  let end = "&format=json";
-  var search = top + k + l + f + s + end;
+  let fm = "&format=jsonp";
+  let end = "&json_callback=returnResponse";
+  var search = top + k + l + f + s + fm + end;
 
-  // $.getJSON(search, callback);
-  $.getJSON(search, function(data) {
-    var r = data.results;
-    renderResult(r);
-  });
+  let settings = {
+    url: `${search}`,
+    type: "GET",
+    dataType: "jsonp",
+  };
+
+  $.ajax(settings);
+
+  // // $.getJSON(search, callback);
+  // $.getJSON(search, function(data) {
+  //   var r = data.results;
+  //   renderResult(r);
+  // });
+
+  // function getDataFromApi(searchTerm, callback) {
+  //   const qObj = {
+  //     url: 'https://comicvine.gamespot.com/api/search/',
+  //     query: `${searchTerm}`,
+  //     limit: 5,
+  //     api_key: 'AIzaSyBCReTi3daKrCxSG-ftR4ed6GRhdlcME9A',
+  //     format: 'json',
+  //   }
+  
+  //   $.getJSON(TUBE_SEARCH_URL, qObj, callback);
+  // }
+}
+
+function returnResponse(data){
+  var r = data.results;
+  renderResult(r);
 }
 
 function renderResult(result) {
