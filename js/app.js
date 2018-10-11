@@ -1,14 +1,8 @@
 'use strict';
 
 function getDataFromApi(searchTerm) {
-  let top = API.url;
-  let k = API.key;
-  let l = "&limit=5";
-  let f = "&filter=name:";
   let s = `${searchTerm}`;
-  let fm = "&format=jsonp";
-  let end = "&json_callback=returnResponse";
-  var search = top + k + l + f + s + fm + end;
+  var search = API.surl() + s;
 
   let settings = {
     url: `${search}`,

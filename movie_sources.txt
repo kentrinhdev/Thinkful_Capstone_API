@@ -1,0 +1,178 @@
+“Do I love you? My God, if your love were a grain of sand, mine would be a universe of beaches.”
+
+
+https://onlocationtours.com/nyc-filming-locations-of-superhero-movies/
+http://thecinescapader.blogspot.com/2016/07/visiting-filming-locations-of-hellboy.html
+https://www.roughguides.com/gallery/40-film-locations-around-the-world/
+
+https://www.bisnow.com/national/news/commercial-real-estate/5-cities-bringing-comic-book-universes-to-life-in-film-76849
+https://www.travelchannel.com/interests/arts-and-culture/articles/5-real-life-locations-from-comic-books
+
+
+X-Men (2000)
+ 
+Toronto has long played a prominent role in many movies, primarily by subbing in for American metropolises. In Bryan Singer's first film in the X-Men franchise, not only did it play New York City (Burlington, ON's Spencer Smith Park acts as a substitute for Liberty Island) and upstate New York, but even Auschwitz.
+ 
+In the film's opening scene, a young Magneto shows his powers for the first time after being separated from his family at the Concentration Camp. To recreate the look of industrial, 1940s Poland, the crew headed southwest of Toronto's city centre to The Gooderham and Worts Distillery. Founded in 1869, the property is considered one of the largest and best-preserved collections of Victorian industrial architecture in all of North America, and although it's since undergone a major revitalization, is still used today in films and TV.
+
+If you'd like to visit Professor Xavier's School for Gifted Youngsters, you're going to have to go to two locations: stately Gothic inner-city mansion Casa Loma (located at 1 Austin Terrace in Toronto, ON) was used for the film's interior shots, while Parkwood Estate and its pristine gardens (located less than an hour east of the city in nearby Oshawa) was used for its exteriors. If it looks familiar, there's a reason for that: the historic estate has been used in countless movies (including Billy Madison).
+
+X2 (2003) and X-Men: The Last Stand (2006)
+ 
+For the next two films in the franchise, the crew shook things up and headed out west to the Hollywood of the North, aka Vancouver, to capture scenes in the city and its surrounding area, forcing the Xavier Mansion to find a new home on Vancouver Island.
+ 
+The historic Hatley Castle (located on the campus of Royal Roads University in the Victoria suburb of Colwood), a former dormitory/mess hall for military cadets-turned-administrative building, served as the mansion's exteriors. To find out how to take a tour of the site, click here.
+ 
+If you want to visit the childhood home of Jean Grey (as seen in the third film), try 1769 Golf Club Drive in Tsawwassen (just south of Vancouver). If you're looking for the place where Phoenix rose from Alkali Lake, try Alouette Lake at Golden Ears Provincial Park, 32 kms east of Vancouver. (Fun fact: much of the first Rambo movie, First Blood, was filmed there in 1982, so consider this one a mecca for Sly Stallone fans.)
+
+X-Men Origins: Wolverine (2010)
+ 
+If you thought the scene in which Logan and Victor Creed, while working with Team X, take part in a raid to acquire a mysterious meteorite in Lagos, Nigeria looked sort of familiar, that's probably because it was actually shot outside the Buchanan Tower, (1873 East Mall Road on the campus of the University of British Columbia) a 12-storey building that has also been used for sci-fi TV series like Supernatural and Fringe.
+ 
+See a few scenes from the shoot here.
+ 
+X-Men: Days of Future Past (2014)
+ 
+Switching things up from its former shooting locations in Western Canada and the UK, Bryan Singer brought the mutants to Montreal for the second film in the franchise's most recent trilogy. Although the majority of the action supposedly takes place in Washington, DC, the Arts Building at 853 rue Sherbrooke Ouest, on the downtown campus of McGill University, proved the perfect place to pretend to be the Pentagon, while the Montréal Hotel de Ville at 275 Rue Notre-Dame Est. acted as the location where the 1973 Paris Peace Accords took place in the following scene.
+ 
+Perhaps most recognizable of all is Montréal's Olympic Stadium, one-time home to the Expos, which plays host to Magneto in the film's climax when he touches down at Washington's Robert F. Kennedy Memorial Stadium and starts to enact his deadly plan. Check it out below.
+
+Deadpool (2016)
+ 
+Although not really a member of the X-Men, former New Mutant and X-Force member Deadpool deserves to be on the list because most of his film was captured in Vancouver.
+ 
+Ever wanted to visit the bridge where Deadpool does away with some bad guys at the start of the film? That's the Georgia Street Viaduct, which was closed for two weeks last spring to capture some scenes. How about the strip club where his ex-girlfriend works as a waitress? Try a few metres away at The Cobalt Hotel (which also happens to house a pretty awesome concert venue), where exteriors were shot for the scene. If you're looking for the interiors, No. 5 Orange is just a ten-minute walk up Main Street.
+ 
+If you're looking for the final major fight scene where Deadpool, Colossus and Negasonic Teenage Warhead square off against Ajax and his henchmen, you'll have to take a cab to nearby Surrey and visit the scrapyard underneath the Pattullo Bridge. Just make sure you've had a tetanus shot first.
+ 
+X-Men: Apocalypse hits theatres across Canada on May 27. 
+
+
+
+
+
+
+
+Which actor known for sci-fi roles had co-starred in both "X-Men" and "Star Trek" films?
+Patrick Stewart
+
+Which actress did not play Catwoman in any of the Batman movies?
+
+The 2005 movie "Sin City" was based on a comic book series from what publisher?
+Dark Horse Comics
+
+What famed comic book creator co-wrote the screenplay for "Robocop 2?"
+Frank Miller
+
+Which actor associated with a superhero movie franchise garnered an Academy Award nomination for his portrayal of Charlie Chaplin?
+
+What "Guardians of the Galaxy" actor also co-starred on the AMC television show "The Walking Dead"?
+
+Who starred as Lex Luthor in the 1978 film "Superman?"
+
+Which superhero is currently not part of the Avenger's movie lineup?
+
+Bonus Question: What artist provided the musical backdrop as the Joker danced through an art museum in the 1989 movie "Batman?"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function getDataFromApi(searchTerm) {
+  let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
+  let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
+  let l = "&limit=5";
+  let f = "&filter=name:";
+  let s = `${searchTerm}`;
+  let end = "&format=json";
+  var search = top + k + l + f + s + end;
+
+  // $.getJSON(search, callback);
+  $.getJSON(search, function(data) {
+    var r = data.results;
+
+    renderResult(r);
+  });
+}
+
+function renderResult(result) {
+  // console.log(result);
+
+  // var img = result.image.original_url;
+  // var name = result.name;
+  // var date = result.release_date;
+  // var studio = result.studios.name;
+  // var writer = result.writers.name;
+
+  // console.log(img);
+  // console.log(name);
+  // console.log(date);
+  // console.log(studio);
+  // console.log(writer);
+
+  for (let i = 0; i < result.length; i++) {
+    var img = result[i].image.original_url;
+    // console.log(result[i].image.original_url);
+
+    var name = result[i].name;
+    // console.log(result[i].name);
+
+    var date = result[i].release_date;
+    // console.log(result[i].release_date);
+
+    $('#js-result').append(
+      `
+        <div class="returned-result">
+          <div class="result-img">
+            <a id="img-link" href=${img} target="_blank"><img class="img-link" src=${img} /></a>
+          </div>
+
+          <div class="result-info">
+            <h4 class="video-title">Movie Title: ${name}</h4>
+            <p class="video-description">Movie Release Date: ${date}</p>
+            
+          </div>
+        </div>
+      `
+    );
+  }
+}
+
+function handleSubmit() {
+  $('#hunt-btn').on('click', function() {
+    const queryTerm = $('#find-box').val();
+
+    if (queryTerm == "" || queryTerm == " " || queryTerm == null) {
+      return false;
+    } else {
+      // getDataFromApi(queryTerm, displaySearchData);
+
+      // let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
+      // let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
+      // let l = "&limit=5";
+      // let f = "&filter=name:";
+      // let s = `${queryTerm}`;
+      // let end = "&format=json";
+      // var search = top + k + l + f + s + end;
+
+      // $.getJSON(search, function(data) {
+      //   var r = data.results;
+
+      //   renderResult(r);
+      // });
+
+      // getDataFromApi(queryTerm, renderResult);
+      getDataFromApi(queryTerm);
+    }
+  });
+}

@@ -10,4 +10,11 @@ const STORE = {
 const API = {
   url: "https://comicvine.gamespot.com/api/movies/?api_key=",
   key: "07ce68f63281224c6c07468a43c3f3947c29060f",
+  limit: "&limit=5",
+  format: "&format=jsonp",
+  callback: "&json_callback=returnResponse",
+  filter: "&filter=name:",
+  surl: function() {
+    return this.url + this.key + this.limit + this.format + this.callback + this.filter;
+  },
 };

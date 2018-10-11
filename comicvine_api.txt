@@ -1,0 +1,65 @@
+YouTube API Key:
+AIzaSyBCReTi3daKrCxSG-ftR4ed6GRhdlcME9A
+
+===========================================
+ComicVine API Key:
+07ce68f63281224c6c07468a43c3f3947c29060f
+
+http://comicvine.gamespot.com/api
+url/characters/?api_key=your_apikey&filter=gender:female
+http://api.comicvine.com/
+
+
+
+https://comicvine.gamespot.com/api/search/?api_key=07ce68f63281224c6c07468a43c3f3947c29060f&limit=5&query=hellboy&format=json
+
+OVERALL SEARCH:
+----------------------------------------------------------------
+let top = "https://comicvine.gamespot.com/api/search/?api_key=";
+let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
+let l = "&limit=5";
+let f = "&query=";
+let s = $('#find-box').val();
+let end = "&format=json";
+
+var search = top + k + l + f + s + end;
+
+RESPONSE RESULTS:
+-----------------------------------------
+var alias = result.aliases;
+var deck = result.deck;
+var desc = result.description;
+var img = result.image.original_url;
+var name = result.name;
+var publisher = result.publisher.name;
+var realName = result.real_name;
+
+===============================================================================================================================
+
+https://comicvine.gamespot.com/api/movies/?api_key=07ce68f63281224c6c07468a43c3f3947c29060f&filter=name:hellboy&format=json
+
+MOVIE SEARCH:
+----------------------------------------------------------------
+let top = "https://comicvine.gamespot.com/api/movies/?api_key=";
+let k = "07ce68f63281224c6c07468a43c3f3947c29060f";
+let f = "&filter=name:";
+let s = $('#find-box').val();
+let end = "&format=json";
+
+var search = top + k + f + s + end;
+
+RESPONSE RESULTS:
+-----------------------------------------
+var img = result.image.original_url;
+var name = result.name;
+var date = result.release_date;
+var studio = result. studios.name;
+var writer = result.writers.name;
+
+
+
+
+
+
+
+
