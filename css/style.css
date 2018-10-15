@@ -48,7 +48,7 @@ ul, li {
 .navigation {
   height: 130px;
   line-height: 3rem;
-  background: url('/img/bg.jpg');
+  background: url('/img/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
@@ -57,9 +57,7 @@ ul, li {
   box-shadow: 0px 20px 30px -15px black;
   -moz-box-shadow: 0px 20px 30px -15px black;
   -webkit-box-shadow: 0px 20px 30px -15px black;
-  /* border-bottom: 5px solid rgba(0, 0, 0, 0.3); */
   position: relative;
-  /* position: fixed; */
   z-index: 2;
 }
 
@@ -135,8 +133,6 @@ ul, li {
 .subnav-date-wrap {
   padding-top: 10px;
   padding-bottom: 5px;
-  /* padding-right: 25px; */
-  /* margin-bottom: 25px; */
   text-align: center;
 }
 
@@ -166,8 +162,7 @@ ul, li {
   width: 100%;
   height: 100%;
   padding: 15px;
-  margin-bottom: 50px;
-  /* background: linear-gradient(to bottom right, #232526, #414345); */
+  margin-bottom: 0;
 }
 
 .rule-title {
@@ -232,14 +227,8 @@ ul, li {
   background-image: linear-gradient(to bottom right, red, #ED8F03);
 }
 
-.row-first {
-  padding-bottom: 40px;
-  margin-bottom: 25px;
-  /* border-bottom: 5px solid rgba(250, 5, 10, 0.5); */
-}
-
-.row-last {
-  height: 100vh;
+.hunt-btn {
+  margin-bottom: 15px;
 }
 
 .find-box-wrap {
@@ -268,24 +257,18 @@ ul, li {
   border-bottom: 1px solid white;
 }
 
-.returned-result {
-  margin-bottom: 25px;
+.results-title {
+  margin-top: 10px;
+  text-align: center;
 }
 
-.results-title {
+.js-result {
   text-align: center;
 }
 
 .js-result-row {
   width: 100%;
-  height: auto;
-  min-height: 635px; /* 600px / 530px */
-  margin-bottom: 25px;
-  border-bottom: 1px solid gainsboro;
-}
-
-.js-result {
-  text-align: center;
+  height: 100%;
 }
 
 .result-img {
@@ -293,12 +276,15 @@ ul, li {
   height: 100%;
   padding-top: 15px;
   padding-bottom: 15px;
-  margin-bottom: 5px;
   background: black;
 }
 
 .result-info {
+  height: 100%;
   text-align: left;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid white;
 }
 
 .img-thumb {
@@ -337,10 +323,6 @@ footer {
 
 /* SMALLER SCREENS */
 @media only screen and (min-width: 768px) {
-  /* nav { */
-    /* display: inline-block; */
-  /* } */
-
   .button-submit-yes {
     width: 80px;
     height: 80px;
@@ -359,7 +341,16 @@ footer {
     width: 45vw;
   }
   .js-result-row {
-    height: 485px;
-    min-height: 150px;
+    height: 10vh;
+    min-height: 485px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid white;
+  }
+  .result-info {
+    border: none;
+  }
+  .hunt-btn {
+    width: 96vw;
+    margin-bottom: 50px;
   }
 }

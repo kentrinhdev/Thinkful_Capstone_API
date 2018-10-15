@@ -1,0 +1,199 @@
+3 (or 4) Layers of Web Design/Web Development:
+ 1) Structural layer (or Content layer) = HTML
+ 2) Presentation layer (or Design or Styles layer) = CSS
+ 3) Behavioral layer (or Action layer) = JavaScript
+ 4) Data layer = Database or XML file or API
+
+Box Model:
+ - HTML elements are boxes = box-content size + padding + border + margin
+   - content: content of box where text and images appear
+   - padding: area around the content (transparent)
+   - border: area around the padding and content
+   - margin: area outside the border (transparent)
+ - The box model defines the space between elements.
+ - Knowing how the box model works allows for the setting of width and height of elements correctly in all browsers.
+ - Note: When you set the width and height properties of an element with CSS, you just set the width and height of the content area. 
+   To calculate the full size of an element, you must also add padding, borders and margins.
+
+ - The total width of an element should be calculated like this:
+ - Total element width = width + left padding + right padding + left border + right border + left margin + right margin
+ - The total height of an element should be calculated like this:
+ - Total element height = height + top padding + bottom padding + top border + bottom border + top margin + bottom margin
+
+The doctype command:
+ - The doctype declaration defines a document to be HTML5. 
+ - Since the early days of the web , there have been many versions of HTML version: HTML 1991 > HTML2.0 1995 > HTML3.2 1997 > HTML4.01 1999 > XHTML 2000 > HTML5 2014. 
+ - It determine whether a document is rendered as strict mode, almost strict mode, or quirks mode, so it does serve a purpose.
+ - It is an instruction to the web browser about what version of HTML the page is written in. 
+ - So, always add the declaration to your HTML documents, so that the browser knows what type of document to expect.
+ - The declaration represents the document type and helps browsers to display web pages correctly.
+
+<head> element:
+ - Container for metadata (data about data)
+
+ - <meta charset="utf-8" /> <--- specifies the 8-bit character encoding of the HTML document
+ - The default character encoding for HTML5 is UTF-8.
+ - UTF-8 (unicode) covers almost all of the characters and symbols in the world.
+ - Browsers must know which character set (charset property = character encoding) to use in order to display an HTML page correctly.
+
+ - <meta name="viewport" content="width=device-width, initial-scale=1" /> <--- HTML5 <meta> viewport element gives the browser instructions on how to control the page's dimensions and scaling.
+ - The width=device-width sets the width of the page to follow the screen-width of the device which will vary depending on the device.
+ - The initial-scale=1 sets the initial zoom level when the page is first loaded by the browser.
+ - Used with media queries to allow pages to be responsive.
+
+ - <title> element:
+ - defines a title in the browser tab
+ - provides a title for the page when it is added to favorites
+ - displays a title for the page in search engine results
+
+Semantic HTML:
+ - HTML markup should convey meaning of content and appearance.
+ - EX: <strong> instead of <b> and sectioning elements like <header>, <nav>, <article>, <figure>, <aside>, <footer> instead of just <div>
+ - Semantic HTML is important to modern web development because it makes it easier for search engines, screen readers, and developers to identify the different parts of a website.
+ - It also helps a developer to keep site organized which in turn makes it easier to maintain.
+
+box-sizing: border-box:
+ - box-sizing defines how the width and height of an elment are calculated: whether padding and borders are to be included or not.
+ - The box-sizing property allows us to include the padding and border in an element's total width and height.
+ - By default (without box-sizing set to border-box):
+ - width = width + padding + border and height = height + padding + border
+ - This means that when width and height is set, the element often appears bigger,
+   because the element's border and padding are added to the element's specified width and height.
+
+ - box-sizing set to border-box allows the total width and height to include the padding and border.
+ - Many browsers already use box-sizing: border-box; for many form elements (but not all - which is why inputs and text areas look different at width: 100%;).
+ - Since the result of using the box-sizing: border-box; is so much better, many developers want all elements on their pages to work this way.
+ - * { box-sizing: border-box; } <--- The * is the Universal selector or *, *:before, *:after { box-sizing: border-box; }
+
+Inline level vs Block level:
+Every HTML element has a default display value depending on what type of element it is. 
+HTML is comprised of essentially two different kinds of elements, either inline or block.
+The default display value for most elements is block or inline.
+ - An inline element does not start on a new line and only takes up as much width as necessary.
+ - Inline elements can begin within a line, does not start a new line, and its width only extends as far as it is defined by its opening and closing tags.
+ - It does not break the flow of content.
+ - Width cannot be set.
+ - Height cannot be set.
+ - Top margin cannot be set.
+ - Bottom margin cannot be set. 
+ - But left and right margins can be styled.
+ - And padding can be styled.
+ - EX: <a>, <img>, <span>, <button>, <br>, <em>, <strong>
+
+ - A block-level element is an HTML element that begins a new line on a web page and extends the full width of the available horizontal space of its parent element. 
+ - It creates large blocks of content like paragraphs or page divisions. 
+ - In fact, most HTML elements are block-level elements.
+ - A block-level element can take up one line or multiple lines and has a line break before and after the element.
+ - Block elements can contain other block level elements and/or other inline elements.
+ - EX: <div>, <footer>, <ul>, <li>, <p>, <form>, <header>, <main>, <nav>
+
+Generally, inline elements may contain only data and other inline elements, but you can't put block elements inside inline elements.
+The "block-level" category roughly corresponds to the category of flow content in HTML5, while "inline" corresponds to phrasing content.
+In general, block level elements are usually structural, while inline elements are usually text based.
+
+When to Change the Display Property:
+In general, leave the display property alone, but there are some cases where swapping inline and block display properties can be useful.
+ - Horizontal list menus: Lists are block-level elements, but if you want your menu to display horizontally, you need to convert the list to an inline element so that each menu item doesn't start on a new line.
+ - Headers in the text: Sometimes you might want a header to remain in the text, but maintain the HTML header values. 
+ - Changing the h1 through h6 values to inline will allow text that comes after its closing tag to continue to flow next to it on the same line, instead of starting on a new line.
+ - Removing the element: If you want to remove an element completely from the document's normal flow, you can set the display to none.
+
+Forms are containers that hold a set of inputs.
+Inputs are individual components that a user interacts with - typically corresponding to a single data point. 
+HTML provides numerous input types (text, email, number, password, etc.), and input types differ in how they are rendered. 
+Inputs also vary in how they are validated.
+The <form> element wraps all inputs and labels. 
+To progressively support all users you'll want to set the action and method attributes. 
+This will ensure user input can be submitted even if JavaScript is disabled or breaks. 
+The action attribute is the URL of the server endpoint that submitted form data should be sent to. 
+The method attribute is the request method that the browser should use when sending the data to the server. 
+Usually you'll want method="post", but method="get" is also possible. 
+The server will expect to receive data via one of these two methods, and you'll need to adjust your form's method accordingly.
+Forms are used to pass user-data to a specified URL
+The HTML <form> tag is used for creating a form for user input. 
+A form can contain textfields, checkboxes, radio-buttons and more. 
+There is a semantic benefit when using forms as a container to hold inputs and labels.
+EX: User sign up form or User feedback form or payment form
+
+Media queries are a tool that CSS gives us to apply blocks of CSS rules to only certain viewports. 
+So on a single stylesheet, we can specify how things should look at one viewport size and specify a different layout and appearance at a different viewport size.
+Media queries allow for reponsive layouts.
+@media only screen and (min-width: 640px) { }
+
+With CSS you can build grid systems to get neat, predictable layouts.
+The most prevalent and useful frontend design patterns is the responsive grid system. 
+Responsive means creating layouts that can dynamically respond to the dimensions of the user’s viewport.
+Another feature of our grid is that column width should be fluid. 
+This means that the columns should scale in size relative to the current width of the row. 
+Fluid columns scale up or down with row width.
+The grid system should give us an easy way to make content take up one, two, three, etc. columns of width.
+We can set media queries to have each column take up 100% of the width to adjust for screen size.
+So, a normal layout can start out with a three-column layout, then when scaled down to mobile size it can become a single-column layout.
+ - Clarity/Order — Grids bring order to a layout making it easier for visitors to find and navigate through information.
+ - Efficiency — Grids allow designers to quickly add elements to a layout because many layout decisions are addressed while building the grid structure.
+ - Economy — Grids make it easier for other designers to work and collaborate on the design as they provide a plan for where to place elements.
+ - Consistency/Harmony — Grids lead to consistency in the layout of pages across a single site or even several sites creating a structural harmony in the design.
+
+A function describes a repeatable process or behavior. You define that behavior once, and you can call it whenever you need to run your set of instructions.
+In the context of functions, an argument is a value that gets passed to the function when it's called. 
+A parameter is the variable that holds the place of an argument when the function is defined.
+A well-chosen function name can make clear what might otherwise require multiple lines of comments to explain.
+Well-crafted functions like alert have a single responsibility. This means that they are designed to do one thing and do it well.
+Well-crafted functions are also determinate. Given the same inputs on separate invocations, the result should be exactly the same. 
+JavaScript functions are a convenient way to package sequences of instructions designed to perform specific tasks or to act as constructors for classes. 
+Function advantages:
+ - Re-usability: A function can be used to avoid having to rewrite the same block of code.
+ - Readability: Code is easier to read and understand in blocks of code by reading the function names.
+ - Maintainibility: If code is easier to read, then it is easier to maintain.
+
+To find particular elements in the DOM (which is called traversing) and update them (which is called manipulating).
+We traverse the DOM to find elements with the '.js-hide-it' class and we manipulate them by adding the '.hidden' class to them.
+Using the JavaScript library jQuery to alter the HTML displayed to end users called DOM (document object model) manipulation. 
+The DOM, or document object model is the browser's representation of the current state of the HTML content of a page.
+With the Document Object Model, programmers can build documents, navigate their structure (DOM tree), and add, modify, or delete elements and content.
+
+In order to take advantage of DOM manipulation, you need to be able to alter the DOM when events happen by using event listeners.
+Some common use cases are:
+ - Listening for when a user submits a form, then validating the data they submitted and displaying helpful error messages if they need to modify their entries
+ - Listening for when a user types a search term into an input and displaying type-ahead text
+ - Listening for when a user clicks an element on the page and launching an animation
+An event listener consists of 2 parts. 
+First, you have to specify which event to listen for. 
+Second, you have to provide a callback function that runs whenever the event occurs.
+The solution is to use DOM event objects. 
+The callback functions in your event listeners always get access to an object representing the triggering event. 
+This contains information about where you typed in the text, what keys you pressed, or which buttons were clicked. 
+In fact, just about every piece of information you could ever want to know about how you performed an action is contained within the event object.
+
+Spaghetti code is a single document ready function that handles everything.
+For small applications this is not a huge problem, but as you start to build apps with greater complexity, it becomes important to separate out your code into distinct functions that have narrow, specific responsibilities.
+ - You have to read every line of code to understand how the app works.
+As the number of contributors to and number of lines in a code base increase, it becomes essential that someone unfamiliar with the app can skim it and get a high-level sense of what it does and how it works. 
+When you have small, well-named functions, it's possible to understand the story of what an app does without reading all the details (every single line of code). 
+The function names tell you what is happening, while the internals of each function are implementation details, which you only need to understand if there's a specific reason to 
+(for instance, if there's a bug related to a particular function).
+ - Spaghetti code doesn't scale
+In short, spaghetti code is difficult to read, maintain, and scale, and for those reasons and more, we need a better approach to architecting our applications. 
+Use short, narrowly-focused, well-named functions (as opposed to the "spaghetti" code approach that throws a bunch of logic into a single function).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

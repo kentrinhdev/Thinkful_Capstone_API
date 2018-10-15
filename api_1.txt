@@ -1,0 +1,577 @@
+home
+
+vita
+  portfolio
+  resume
+
+read
+  blog
+  news
+
+talk
+  contact
+  media
+
+
+
+
+buzz
+mail
+tell
+chat
+talk
+skills
+blog
+work
+vita
+me
+contact
+projects
+resume
+explore
+read me
+news
+media
+base
+join
+
+who am i
+what i do
+why i am
+
+
+YouTube API Key: AIzaSyBCReTi3daKrCxSG-ftR4ed6GRhdlcME9A
+
+https://i.ytimg.com/vi/b6hoBp7Hk-A/mqdefault.jpg
+https://i.ytimg.com/vi/pn7SFWpXURk/mqdefault.jpg
+https://i.ytimg.com/vi/B0i_ryWN3UU/mqdefault.jpg
+
+----------------------------------------------------------
+
+API Endpoint:
+http://www.omdbapi.com/?
+
+http://www.omdbapi.com/?apikey=[yourkey]&
+
+Here is your key: c4ff435
+
+Please append it to all of your API requests,
+
+OMDb API: 
+http://www.omdbapi.com/?apikey=[yourkey]&
+
+http://www.omdbapi.com/?s=matrix&apikey=c4ff435
+
+http://www.omdbapi.com/?s= + [search string] + &apikey= + [api key]
+
+var top = http://www.omdbapi.com/?s=
+
+var bod = $('#search-box').val();
+
+var key = c4ff435
+var end = "&apikey=" + key
+
+var search = top + bod + end;
+
+response.Title
+response.Released
+response.Runtime
+response.Director
+response.Poster
+
+Click the following URL to activate your key: http://www.omdbapi.com/apikey.aspx?VERIFYKEY=87462790-e6fc-4c25-9944-3412f1b59a64
+
+---------------------------------------------------------
+
+API Endpoint:
+http://api.comicvine.com/
+
+Your API key for Comic Vine is...
+API Key:
+07ce68f63281224c6c07468a43c3f3947c29060f
+
+https://www.comicvine.com/api/characters?api_key=07ce68f63281224c6c07468a43c3f3947c29060f&format=json
+https://comicvine.gamespot.com/api/search/?query=batman&limit=5&api_key=07ce68f63281224c6c07468a43c3f3947c29060f&format=json
+
+300 x 450
+
+--------------------------------------------------------
+
+Yelp.com
+
+Client ID
+01JUe9cKmDnJqsO5UenQsw
+
+API Key
+nJJz8lzD8Z5WUU42BdAtNc6FzoK98BKZe0UBU7ofNnnDtZ5bkM894kLXczi8Ye7cRC06etEXmo4YXO51DvzFSjtoJ7O5rRJsZelJ-1m2NxYV7MzUKsb2uuEPC6e6W3Yx
+
+-----------------------------------------------
+
+Marvel.com
+Q6S6F~#pG![Y^)xa
+
+Remember your password:QUEEN 6 SKYPE 6 FRUIT ~ # park GOLF ! [ YELP ^ ) xbox apple
+
+developer.marvel.com
+
+Public Key:
+0cbc993716736f5074d8a523c49413de
+
+Private Key:
+733d032ca5ed7019686e179c61961397263442d6
+
+https://gateway.marvel.com:443/v1/public/characters?name=bruce%20wayne&apikey=0cbc993716736f5074d8a523c49413de
+
+
+
+Professor Trevor 'Broom' Bruttenholm:
+In the absence of light, darkness prevails. There are things that go bump in the night, Agent Myers. Make no mistake about that. And we are the ones who bump back.
+
+
+
+
+
+https://comicvine.gamespot.com/api/movies/?api_key=07ce68f63281224c6c07468a43c3f3947c29060f&limit=5&filter=name:blade&format=jsonp&json_callback=renderResults
+
+
+
+
+
+
+
+<div class="row">
+      <div class="twelve columns">
+        <main role="main">
+          <div class="feedback-box" id="feedback-section">
+            <span class="answer-correct" id="lbl-feedback-correct">Correct Answer</span>
+            <span class="answer-wrong" id="lbl-feedback-wrong">Incorrect Answer</span>
+            <!-- <p id="feedback-trivia"> -->
+              <!-- It's an unfortunate fact that most everyone, at some point, will have a bad relationship. The film Eternal Sunshine of The Spotless Mind poses the question: What if you could have the memory of this bad relationship erased? Would you do it? If so, what kind of impact would erasing memories have on you? Smart, funny, and engaging, this latest outing by enigmatic Screenwriter Charlie Kaufman and accomplished Music Video Director Michel Gondry is an absolute treat. Eternal Sunshine of The Spotless Mind is one of those rare films that, after watching it, you'll want to run back and watch it again and again. -->
+            <!-- </p> -->
+          </div>
+        </main>
+      </div><!-- col-12 -->
+    </div><!-- row -->
+
+
+
+
+
+
+
+
+function generateQuestion() {
+  let thisQuestion = $('#question-slot').html();
+  let num = STATS.questionNumber;
+  
+  thisQuestion = STORE[num -1].question;
+
+  shuffle(STORE[num - 1].choices);
+
+  $('#lbl-option-1').html(STORE[num -1].choices[0]);
+  $('#option-1').val(STORE[num -1].choices[0]);
+
+  $('#lbl-option-2').html(STORE[num -1].choices[1]);
+  $('#option-2').val(STORE[num -1].choices[1]);
+
+  $('#lbl-option-3').html(STORE[num -1].choices[2]);
+  $('#option-3').val(STORE[num -1].choices[2]);
+
+  $('#lbl-option-4').html(STORE[num -1].choices[3]);
+  $('#option-4').val(STORE[num -1].choices[3]);
+
+  $('#feedback-trivia').html(STORE[num -1].feedback);
+
+  // console.log(thisQuestion);
+  return thisQuestion;
+}
+
+function renderQuestion() {
+  let firstQuestion = generateQuestion();
+  $('#question-slot').html(firstQuestion);
+}
+
+function calculatePercent() {
+  let scorePercent = (STATS.correct / STORE.length) * 100;
+  console.log("scorePercent: " + scorePercent + " %");
+
+  return scorePercent;
+};
+
+function handleOptionSelect() {
+  $('#answer-form').on('submit', function (event) {
+    event.preventDefault();
+
+    let optionSelected = $('input:checked').val();
+    let num = STATS.questionNumber - 1;
+
+    if (optionSelected === STORE[num].answer()) {
+      //Feedback if correct
+      const statCorrect = STATS.correct;
+      STATS.correct = statCorrect + 1;
+
+      const currentScore = calculatePercent();
+      $('#question-score').html(currentScore);
+
+      STATS.isCorrect = true;
+      console.log("Correct: " + optionSelected + " vs " + STORE[num].answer());
+    } else {
+      //Feedback if wrong
+      const statIncorrect = STATS.incorrect;
+      STATS.incorrect = statIncorrect + 1;
+
+      STATS.isCorrect = false;
+      // console.log("Incorrect: " + optionSelected + " vs " + STORE[num].answer());
+    }
+  });
+}
+
+
+
+
+
+
+
+
+function toggleFeedback() {
+  $('#feedback-section').toggle(false);
+  $('#lbl-final-answer').toggle(true);
+  $('#btn-submit-yes').toggle(true);
+}
+
+function handleNextButton() {
+  $('#answer-form').on('click','#btn-submit-next', function(event) {
+    event.preventDefault();
+
+    $('#form-fieldset').toggle(true);
+
+    $('input[name="radio"]').prop('checked', false);
+
+    toggleFeedback();
+
+    $('#lbl-keep-going').toggle(false);
+    $('#btn-submit-next').toggle(false);
+
+    increaseQuestionNumber();
+
+    if (STATS.questionNumber <= STORE.length) {
+      renderQuestion();
+
+      console.log("handleNextButton done");
+    } else {
+      return false;
+    }
+  });
+}
+
+function handleDoneButton() {
+  $('#answer-form').on('click','#btn-submit-done', function(event) {
+    event.preventDefault();
+
+    $('#main-app').toggle(false);
+    $('#end-page').toggle(true);    
+
+    $('#lbl-congratulations').toggle(false);
+    $('#btn-submit-done').toggle(false);
+    $('#footer').toggle(false);
+  });
+}
+
+
+
+
+
+
+
+
+function renderQuizPage() {
+  $('#feedback-section').toggle(false);
+  $('#lbl-keep-going').toggle(false);
+  $('#btn-submit-next').toggle(false);
+  $('#lbl-congratulations').toggle(false);
+  $('#btn-submit-done').toggle(false);
+
+  handleOptionSelect();
+
+  const currentQuestionNumber = STATS.questionNumber;
+  $('#question-number').html(currentQuestionNumber);
+
+  renderQuestion();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- -------------------------------------------------------------------- end -------------------------------------------------------------------- -->
+    <!-- <div class="twelve columns"> -->
+      <!-- <div id="modal-end"> -->
+        <!-- <div class="modal-box"> -->
+          <!-- <form class="welcome-form" id="end-form"> -->
+            <!-- <h2>Hey!</h2> -->
+            <!-- <h3>You finished the <span>2DO | 2DONE</span> quiz.</h3> -->
+            <!-- <p class="end-message" id="end-message"> -->
+              <!-- You're so Hollywood! Review the results below. Click GO to take the quiz again! -->
+            <!-- </p> -->
+
+            <!-- <p id="end-result"></p> -->
+
+            <!-- <div class="container-go"> -->
+              <!-- <button class="button-submit" id="button">GO</button> -->
+              <!-- <input type="submit" class="button-submit" id="btn-go" value="GO"> -->
+            <!-- </div> -->
+          <!-- </form> -->
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
+
+  <!-- </div> -->
+  <!-- ------------------------------------------------------------------ footer ------------------------------------------------------------------ -->
+
+
+
+
+
+function endOfQuiz() {
+  let nextNumber = STATS.questionNumber;
+  let maxNumber = STORE.length;
+  console.log("nextNum: " + nextNumber + " vs maxNumber: " + maxNumber);
+
+  if (nextNumber === maxNumber) {
+    let correct = STATS.correct;
+    let count = STORE.length;
+    let total = (correct / count) * 100;
+
+    let lblCorrect = "Correctly Answered: ";
+    let lblIncorrect = "Incorrectly Answered: ";
+    let lblCount = "Number of Questions: ";
+    let lblScore = "Total Score: ";
+
+    $('#end-result').html(
+      `<span><span class="nav-player-name-end">${STATS.name}</span>'s Quiz Results:</span><br>
+      <span>${lblCorrect} ${STATS.correct}</span><br>
+      <span>${lblIncorrect} ${STATS.incorrect}</span><br>
+      <span>${lblCount} ${STORE.length}</span><br>
+      <span>${lblScore} ${total} %</span><br>`
+    );
+
+    $('#lbl-keep-going').toggle(false);
+    $('#btn-submit-next').toggle(false);
+    $('#lbl-congratulations').toggle(true);
+    $('#btn-submit-done').toggle(true);
+
+    handleDoneButton();
+
+    console.log("End of Quiz");
+  } else {
+    return false;
+  }
+}
+
+
+
+
+
+
+
+function resetStats() {
+  STATS.score = 0;
+  STATS.questionNumber = 1;
+  STATS.correct = 0;
+  STATS.isCorrect = false;
+  STATS.incorrect = 0;
+  STATS.grade = "";
+}
+
+function handleEndGoSubmit() {
+  $('#end-form').submit(function(event) {
+    event.preventDefault();
+
+    shuffle(STORE);
+    
+    resetStats();
+    $('#question-score').html(STATS.score);
+
+    toggleMainApp();
+    $('#question-number').html(STATS.questionNumber);
+
+    renderQuestion();
+    $('input[name="radio"]').prop('checked', false);
+
+    $('#form-fieldset').toggle(true);
+
+    toggleFeedback();
+  });
+}
+
+
+
+
+
+
+
+
+function increaseQuestionNumber() {
+  let nextQuestionNumber = STATS.questionNumber;
+
+  if (nextQuestionNumber <= STORE.length) {
+    nextQuestionNumber = nextQuestionNumber + 1;
+
+    STATS.questionNumber = nextQuestionNumber;
+    $('#question-number').html(STATS.questionNumber);
+  } else {
+    return false;
+  }
+}
+
+function handleQuizFormSubmit() {
+  $('#answer-form').submit(function(event) {
+    event.preventDefault();
+
+    $('#form-fieldset').toggle(false);
+    $('#container-button').css('padding-top','10px');
+
+    $('#feedback-section').toggle(true);
+    
+    if (STATS.isCorrect === true) {
+      $('#lbl-feedback-correct').toggle(true);
+      $('#lbl-feedback-wrong').toggle(false);
+    } else {
+      $('#lbl-feedback-correct').toggle(false);
+      $('#lbl-feedback-wrong').toggle(true);
+    }
+
+    $('#lbl-final-answer').toggle(false);
+    $('#btn-submit-yes').toggle(false);
+
+    $('#lbl-keep-going').toggle(true);
+    $('#btn-submit-next').toggle(true);
+
+    endOfQuiz();
+  });
+}
+
+
+
+
+  // if($.browser.msie){
+  //   $('#intro-page').css({"visibility":"visible"});
+  //   $('#end-page').css({"visibility":"hidden"});
+  //   $('#end-page').parent().hide();
+  //   $('#end-page').prop('disabled', true);
+  //   $('#end-page').detach();
+  //   $('#end-page').attr('disabled', 'disabled').hide();
+  // }
+
+  var ua = window.navigator.userAgent;
+  var msie = ua.indexOf("MSIE ");
+
+  if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+  {
+    $('#intro-page').css({"visibility":"visible"});
+    $('#end-page').css({"visibility":"hidden"});
+    $('#end-page').parent().hide();
+    $('#end-page').prop('disabled', true);
+    $('#end-page').detach();
+    $('#end-page').attr('disabled', 'disabled').hide();
+
+    alert(parseInt(ua.substring(msie + 5, ua.indexOf(".", msie))));
+  } else {
+    console.log("WTF Not IE browser???");
+  }
+
+
+Based on the Worldwide Screen Resolution Stats (Nov 2016 – Nov 2017) chart above and the charts below, these are the resolutions you need to be aware of in 2018.
+
+360×640 – 21.54%
+1366×768 – 12.85%
+1920×1080 – 7.76%
+375×667 – 4.94%
+1440×900 – 3.32%
+1280×800 – 2.67%
+
+Most Common Desktop Screen Resolution Sizes Worldwide
+
+1366×768 – 29.25%
+1920×1080 – 17.34%
+1440×900 – 7.32%
+1600×900 – 5.72%
+1280×800 – 5.27%
+1280×1024 – 4.51%
+
+CREATIVE
+CREA
+TIVE
+
+DESIGN
+DES
+IGN
+
+DRIVEN
+DRI
+VEN
+
+CODE
+CO
+DE
+
+<svg width="670" height="220" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - https://github.com/SVG-Edit/svgedit-->
+ <g class="layer">
+  <title>Layer 1</title>
+  <path d="m40.75,10.25c0,0 100,-0.5 99.75,-0.75c-0.25,-0.25 -98.75,99.25 -98.75,99.25c0,0 -1,-98.5 -1,-98.5z" fill="#000000" id="svg_8" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0"/>
+  <path d="m40.37476,111.87524c0,0 100,-0.5 99.75,-0.75c-0.25,-0.25 -98.75,99.25 -98.75,99.25c0,0 -1,-98.5 -1,-98.5z" fill="#000000" id="svg_9" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0" transform="rotate(-89.663 90.25 160.75)"/>
+  <path d="m141.25,9.75c0,0 328.99999,0 328.99999,0c0,0 -168.31624,158.49999 -168.31624,158.49999c0,0 -160.68376,-158.49999 -160.68376,-158.49999z" fill="#000000" id="svg_23" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0"/>
+  <path d="m84.25,109.25c0,0 57.5,-58 57.5,-58c0,0 157.5,159 157.5,159c0,0 -116,-0.5 -116,-0.5c0,0 -99,-100.5 -99,-100.5z" fill="#000000" id="svg_28" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0"/>
+  <path d="m481.75,40.75c0,0 39,0 39,0c0,0 0.5,169 0.5,169c0,0 -218.5,0.5 -218.5,0.5c0,0 179,-169.5 179,-169.5z" fill="#000000" id="svg_29" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0"/>
+  <path d="m591.5,9.33333c0,0 39,0.33333 38.83333,0.16667c-0.16667,-0.16667 0.16667,200.83333 0,200.66667c-0.16667,-0.16667 -78.5,-0.16667 -78.5,-0.16667c0,0 0,-169.66667 0,-169.66667c0,0 40,0.33333 40,0.33333c0,0 -0.33333,-31.33333 -0.33333,-31.33333z" fill="#000000" id="svg_34" stroke="#000000" stroke-dasharray="null" stroke-linecap="null" stroke-linejoin="null" stroke-width="0"/>
+ </g>
+</svg>
+
+
+Moonlit Asteroid
+#0f2027
+#203a43
+#2c5364
+
+Frost
+#000428
+#004e92
+
+ServQuick
+#485563
+#29323c
+
+Ash
+#606c88
+#3f4c6b
+
+Mirage
+#16222a
+#3a6073
+
+Titanium
+#283048
+#859398
+
+
+#75af65
+
+
+
+
+
+
+
+
+
+
+
+

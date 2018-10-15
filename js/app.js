@@ -33,14 +33,25 @@ function getDataFromApi(searchTerm) {
 
 function returnResponse(data){
   var r = data.results;
-  renderResult(r);
+
+  console.log(r);
+
+  if (r.length > 0) {
+    $('#clue-box').toggle(false);
+    $('#results-title').toggle(true);
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    renderResult(r);
+  } else {
+    renderNoResult();
+  }
 }
 
 function renderResult(result) {
   for (let i = 0; i < result.length; i++) {
     var img = result[i].image.original_url;
     var name = result[i].name;
-    var date = result[i].release_date;
+    var realName = result[i].real_name;
+    var publisher = result[i].publisher.name;
     var deck = result[i].deck;
 
     // var desc = result[i].description;
@@ -48,7 +59,7 @@ function renderResult(result) {
 
     $('#js-result').append(
       `
-        <div class="row js-result-row">
+        <div class="js-result-row">
           <div class="col-six">
             <div class="result-img">
               <a id="img-link" href=${img} target="_blank"><img class="img-thumb" src=${img} /></a>
@@ -57,16 +68,27 @@ function renderResult(result) {
 
           <div class="col-six">
             <div class="rule-instructions result-info">
-              <h4 class="movie-title">Movie Title: ${name}</h4>
-              <p class="movie-date">Release Date: ${date}</p>
+              <h4 class="movie-title">Hero or Villain Name: ${name}</h4>
+              <h5 class="movie-title">Real Name: ${realName}</h5>
+              <p class="movie-date">Publisher: ${publisher}</p>
               <p class="movie-deck">Summary: ${deck}</p>
-              
             </div>
           </div>
         </div>
       `
     );
   }
+}
+
+function renderNoResult() {
+  $('#js-result').html(
+    `
+      <div class="row js-result-row">
+        <h3 class="rule-title">No Matches Found!</h3>
+        <h4 class="rule-title">Hunt Again!</h4>
+      </div>
+    `
+  );
 }
 
 function handleSubmit() {
@@ -93,6 +115,7 @@ function toggleRules() {
   $('#rule-box').fadeIn(3000).delay(500);
   $('#clue-box').toggle(false);
   $('#game-rules').html(STORE.gameRules);
+  $('#results-title').toggle(false);
 }
 
 function countdownTimer() {
