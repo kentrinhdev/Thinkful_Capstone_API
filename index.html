@@ -116,9 +116,7 @@
         </div>
       </div>
 
-      <div class="clue-btn-wrap">
-        <!-- In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
-        renowned for my swordsmanship and using signature swords of my own design. Who am I? -->
+      <div class="clue-btn-wrap hunt-btn-wrap">
         <button class="clue-btn hunt-btn" id="hunt-btn">HUNT</button>
       </div>
     </div><!-- row -->
@@ -133,14 +131,47 @@
 
 <!-- /////////////////////////////////////////// -->
 
-
 <h2 class="rule-title results-title" id="results-title">HUNT SEARCH RESULTS</h2>
-  <div class="box3 js-result" id="js-result">
-    <!-- <div class="box3 js-result" id="js-result"> -->
-      <!-- dynamic content -->
-    <!-- </div> -->
-  </div>
+
+<div class="box3 js-result" id="js-result">
+  <!-- dynamic content -->
+</div>
+
+<!-- /////////////////////////////////////////// -->
   
+<form class="answer-form" id="answer-form">
+  <legend class="answer-form-legend">Does the Hero Search match the Clues Given?</legend>
+
+  <div class="question-box" id="question-box">
+    <p id="question-slot">Which Hero Am I?</p>
+  </div>
+
+  <div class="answer-selection-wrap">
+    <label for="option-1" class="radio-box"><span id="lbl-option-1">Possible Answer One</span>
+      <input type="radio" name="radio"  id="option-1" value="Possible Answer One" data-required required="required">
+      <span class="checkmark"></span>
+    </label>
+
+    <label for="option-2" class="radio-box"><span id="lbl-option-2">Possible Answer Two</span>
+      <input type="radio" name="radio" id="option-2" value="Possible Answer Two" data-required required="required">
+      <span class="checkmark"></span>
+    </label>
+
+    <label for="option-3" class="radio-box"><span id="lbl-option-3">Possible Answer Three</span>
+      <input type="radio" name="radio" id="option-3" value="Possible Answer Three" data-required required="required">
+      <span class="checkmark"></span>
+    </label>
+
+    <label for="option-4" class="radio-box"><span id="lbl-option-4">Possible Answer Four</span>
+      <input type="radio" name="radio" id="option-4" value="Possible Answer Four" data-required required="required">
+      <span class="checkmark"></span>
+    </label>
+  </div>
+
+  <div class="okay-btn-wrap">
+    <input class="okay-btn" id="okay-btn" type="submit" value="OKAY">
+  </div>
+</form>
 
 <!-- /////////////////////////////////////////// -->
 

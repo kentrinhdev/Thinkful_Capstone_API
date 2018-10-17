@@ -1,5 +1,36 @@
 'use strict';
 
+const STATS = {
+  questionNumber: 1,
+  numberCorrect: 0,
+  numberWrong: 0,
+};
+
+const QSTORE = [
+  {
+    question: "Which hero is also known as Big Red?",
+    choices: ["Batman", "Hellboy", "Deadpool", "Red Tornado"],
+    answer: "Hellboy",
+    feedback: "Hellboy is a fictional superhero created by writer-artist Mike Mignola. He said in an interview that Hellboy's personality is really much more him, but some of the physical stuff is his father, so it’s a bizarre combination of his father’s physicality. Mignola's father missed WWII but he was a Korean War guy, a tough guy, one of those guys who would come home with blood all over himself from getting his hand stuck in a piece of machinery. He was so leathery. You knew he could strike one of those old fashioned matches off of his calloused hands. As far as the stories go, Mignola's fascination with ghosts and monsters began at an early age, reading Dracula at age 12 introduced him to Victorian literature and folklore, from which he has never recovered. This clearly had a heavy influence on the creation of Hellboy. In August 1993, Mignola debuted the first appearance of Hellboy in San Diego Comic-Con #2 published by Dark Horse Comics.",
+  },
+
+  {
+    question: "Which hero is also known as Wall Crawler?",
+    choices: ["Superman", "Venom", "Batman", "Spider-Man"],
+    answer: "Spider-Man",
+    feedback: "When Kirby showed Stan Lee the first six pages he'd drawn, Lee recalled that he hated the way Kirby was doing it! Not that he did it badly--it just wasn't the character that Lee wanted; it was too heroic. Instead, Lee turned to Steve Ditko, who developed a visual style Lee found satisfactory. In August 1962, Spider-Man was first introducted in Amazing Fantasty #15 published by Marvel Comics",
+  },
+
+  {
+    question: "Who directed Inception?",
+    choices: ["Christopher Nolan", "JJ Abrams", "Ang Lee", "David Lynch"],
+    answer: function() {
+      return this.choices[0];
+    },
+    feedback: "Christopher Edward Nolan is an English film director, screenwriter, and producer who holds both British and American citizenship. Inception is a 2010 science fiction action thriller film written, co-produced, and directed by Christopher Nolan about a thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.",
+  },
+];
+
 const STORE = {
   gameRules: "Your task is to hunt for each of the superhero-related items within a given amount of time of 2 hours. You will be given several multi-layered clues. Each clue will lead you to the next clue. Try to find all of the items before the time runs out!",
   clue1: "I am a creature that was summoned to Earth by Nazi cultist Grigori Rasputin. My real name is Anung un Rama and I was destined to destroy the world by unleashing the Ogdru Jahad to spread darkness and chaos across existence. I have superhuman abilities that stem from my demonic heritage, but I am also the Earth's first line of defense against occult menaces. I am a large, red-skinned demon with a tail, horns, which I filed off, leaving behind the signature circular stumps on my forehead, and an over-sized right hand made of stone. I am a hero. Who am I?",
