@@ -1,7 +1,7 @@
 'use strict';
 
 const STATS = {
-  gameRules: "Your task is to hunt for each of the superhero-related items within a given amount of time of 2 hours. You will be given several multi-layered clues. Each clue will lead you to the next clue. Try to find all of the items before the time runs out!",
+  gameRules: "Your task is to hunt for each of the superhero-related items within the one-hour time limit. The countdown timer shown above as TIME LEFT will begin to count down immediately once the Play button is clicked. You will be given several multi-layered clues. Each clue will lead you to the next clue. Try to find all of the items before the time runs out!",
   questionNumber: 1,
   numberCorrect: 0,
   numberWrong: 0,
@@ -12,7 +12,7 @@ const QSTORE = [
     question: "Which hero is also known as Big Red?",
     choices: ["Batman", "Hellboy", "Deadpool", "Red Tornado"],
     answer: "Hellboy",
-    feedback: "Hellboy is a fictional superhero created by writer-artist Mike Mignola. He said in an interview that Hellboy's personality is really much more him, but some of the physical stuff is his father, so it’s a bizarre combination of his father’s physicality. Mignola's father missed WWII but he was a Korean War guy, a tough guy, one of those guys who would come home with blood all over himself from getting his hand stuck in a piece of machinery. He was so leathery. You knew he could strike one of those old fashioned matches off of his calloused hands. As far as the stories go, Mignola's fascination with ghosts and monsters began at an early age, reading Dracula at age 12 introduced him to Victorian literature and folklore, from which he has never recovered. This clearly had a heavy influence on the creation of Hellboy. In August 1993, Mignola debuted the first appearance of Hellboy in San Diego Comic-Con #2 published by Dark Horse Comics.",
+    feedback: "Hellboy is a fictional superhero created by writer-artist Mike Mignola. He said that Hellboy's personality is loosely based off his father being a Korean War guy, a tough guy, one of those guys who would come home with blood all over himself from getting his hand stuck in a piece of machinery. He was so leathery. You knew he could strike one of those old fashioned matches off of his calloused hands. As far as the stories go, Mignola's fascination with ghosts and monsters began at an early age, reading Dracula at age 12 introduced him to Victorian literature and folklore, from which he has never recovered. This clearly had a heavy influence on the creation of Hellboy. In August 1993, Mignola debuted the first appearance of Hellboy in San Diego Comic-Con #2 published by Dark Horse Comics.",
   },
 
   {

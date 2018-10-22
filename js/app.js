@@ -14,7 +14,7 @@ function toggleRules() {
 // Setter for the count down timer
 function countdownTimer() {
   var dt = new Date();
-  var endTime = dt.setHours( dt.getHours() + 2 );
+  var endTime = dt.setHours( dt.getHours() + 1 );
 
   var x = setInterval(function() {
   var now = new Date().getTime();
@@ -36,8 +36,8 @@ function countdownTimer() {
   }, 1000);
 }
 
+// Render clue description and image on page
 function renderClueDetails(n) {
-  // let n = STATS.questionNumber;
   console.log('questionNumber: ', n);
 
   $('#clue-title').html(`Clue # ${n}`);
@@ -48,7 +48,7 @@ function renderClueDetails(n) {
   $('#clue-img-slot').attr('src',`${imgPath}`);
 }
 
-// Play button click actions
+// Play button actions upon click
 function handlePlayClick() {
   $('#play-btn').on('click', function() {
     countdownTimer();
@@ -64,6 +64,7 @@ function handlePlayClick() {
   });
 }
 
+// Ajax call to get data from api
 function getDataFromComicVineComicsApi(searchTerm) {
   let s = `${searchTerm}`;
   var search = API_COMICS.surl() + s;
@@ -77,7 +78,7 @@ function getDataFromComicVineComicsApi(searchTerm) {
   $.ajax(settings);
 }
 
-// Hunt button click actions
+// Hunt button actions upon click
 function handleHuntClick() {
   $('#hunt-btn').on('click', function() {
     $('#find-box-wrap').animate(
@@ -89,10 +90,20 @@ function handleHuntClick() {
     const queryTerm = $('#find-box').val();
 
     if (queryTerm == "" || queryTerm == " " || queryTerm == null) {
+      // No mathces found and returned
       renderNoResult("No Match Found");
-      return false;
     } else {
-      getDataFromComicVineComicsApi(queryTerm);
+      // Matches found and returned
+      let n = STATS.questionNumber;
+
+      if (n === 1) {
+        getDataFromComicVineComicsApi(queryTerm);
+      } else if (n === 2) {
+        getDataFromComicVineMoviesApi(queryTerm);
+      } else {
+        console.warn('not 1 or 2');
+      }
+      
     }
   });
 
@@ -112,7 +123,8 @@ function keypressEnter() {
   });
 }
 
-function renderResult(result) {
+// Render results back from api call
+function renderComicsResult(result) {
   for (let i = 0; i < result.length; i++) {
     var img = result[i].image.original_url;
     var name = result[i].name;
@@ -156,6 +168,8 @@ function renderResult(result) {
   }
 }
 
+// Handle response depending on number of results returned
+// Called through ajax parameters
 function returnResponse(data){
   var r = data.results;
 
@@ -168,7 +182,18 @@ function returnResponse(data){
     $('#answer-form').toggle(true);
     $("html, body").animate({ scrollTop: 0 }, "slow");
     renderQuestionSelections();
-    renderResult(r);
+    
+    let n = STATS.questionNumber;
+
+    if (n === 1) {
+      renderComicsResult(r);
+    } else if (n === 2) {
+      renderMoviesResult(r);
+    } else {
+      console.warn('not 1 or 2');
+    }
+
+    
   } else {
     $('#find-box').val("");
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
@@ -176,6 +201,7 @@ function returnResponse(data){
   }
 }
 
+// Render message when no results are returned
 function renderNoResult(value) {
   $('#js-result').html(
     `
@@ -187,6 +213,7 @@ function renderNoResult(value) {
   );
 }
 
+// Render quiz question and selections
 function renderQuestionSelections() {
   let n = STATS.questionNumber - 1;
   let sMax = QSTORE[n].choices.length;
@@ -203,11 +230,13 @@ function renderQuestionSelections() {
   }
 }
 
+// Clear search term then reset query
 function clearResults() {
   let queryTerm = "";
   getDataFromComicVineComicsApi(queryTerm);
 }
 
+// Hide search results
 function toggleSearchResults() {
   $('#answer-form').toggle(false);
   $('input[name="radio"]').prop('checked', false);
@@ -215,6 +244,7 @@ function toggleSearchResults() {
   $('.js-result-row').toggle(false);
 }
 
+// Okay button actions upon click
 function handleOkayClick() {
   let optionSelected = $('input:checked').val();
   console.log('Hero Selected: ', optionSelected);
@@ -244,6 +274,7 @@ function handleOkayClick() {
   $("html, body").animate({ scrollTop: 0 }, "slow");
 }
 
+// Render message when incorrect answer is selected
 function renderCorrectAnswer(value) {
   let nx = STATS.questionNumber - 1;
 
@@ -261,6 +292,7 @@ function renderCorrectAnswer(value) {
   );
 }
 
+// Answer form actions upon submit
 function handleAnswerFormSubmit() {
   $('#answer-form').on('submit', function(e) {
     e.preventDefault();
@@ -270,6 +302,7 @@ function handleAnswerFormSubmit() {
   });
 }
 
+// Continue button actions upon click
 function handleContinueClick() {
   $('#continue-btn').on('click', function() {
     var n = STATS.questionNumber;
@@ -285,6 +318,7 @@ function handleContinueClick() {
   });
 }
 
+// Ajax call to get data from api
 function getDataFromComicVineMoviesApi(searchTerm) {
   let s = `${searchTerm}`;
   var search = API_MOVIES.surl() + s;
@@ -298,6 +332,69 @@ function getDataFromComicVineMoviesApi(searchTerm) {
   $.ajax(settings);
 }
 
+// Render results back from api call
+function renderMoviesResult(result) {
+  for (let i = 0; i < result.length; i++) {
+    var img = result[i].image.original_url;
+    var name = result[i].name;
+
+    var revenue = result[i].total_revenue;
+    // revenue = revenue.toString().replace(/(\d)(?=(\d{3})+$)/g);
+    if (!revenue) {
+      revenue = " - ";
+    } else {
+      revenue = revenue;
+    }
+
+    var rating = result[i].rating;
+
+    var releaseDate = result[i].release_date;
+    // releaseDate = Date.parse(releaseDate);
+    if (!releaseDate) {
+      releaseDate = " - ";
+    } else {
+      releaseDate = releaseDate;
+    }
+
+    var director = result[i].writers[1].name;
+    if (!director) {
+      director = " - ";
+    } else {
+      director = director;
+    }
+
+    var deck = result[i].deck;
+    if (!deck) {
+      deck = " - ";
+    } else {
+      deck = deck;
+    }
+
+    $('#js-result').append(
+      `
+        <div class="js-result-row">
+          <div class="col-six">
+            <div class="result-img">
+              <a id="img-link" href=${img} target="_blank"><img class="img-thumb" src=${img} /></a>
+            </div>
+          </div>
+
+          <div class="col-six">
+            <div class="rule-instructions result-info">
+              <h4 class="movie-title"><span class="result-lbl">Movie Title:</span> ${name}</h4>
+              <h5 class="movie-title"><span class="result-lbl">Revenue:</span> ${revenue}</h5>
+              <p class="movie-date"><span class="result-lbl">Rating:</span> ${rating}</p>
+              <p class="movie-deck"><span class="result-lbl">Release Date:</span> ${releaseDate}</p>
+              <p class="movie-deck"><span class="result-lbl">Director:</span> ${director}</p>
+              <p class="movie-deck"><span class="result-lbl">Summary:</span> ${deck}</p>
+            </div>
+          </div>
+        </div>
+      `
+    );
+  }
+}
+
 
 // Start app procedures
 function appStart() {
@@ -306,7 +403,6 @@ function appStart() {
   handleHuntClick();
   keypressEnter();
   handleAnswerFormSubmit();
-  handleContinueClick();
 }
 
 $(appStart);
