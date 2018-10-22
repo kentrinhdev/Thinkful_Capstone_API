@@ -94,24 +94,18 @@
     <div class="row row-first">
       <div class="col-six clue-height">
         <div class="box4">
-          <h3 class="rule-title">Clue # 1</h3>
-          <p class="rule-instructions" id="clue-1">
-            In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
-            renowned for my swordsmanship and using signature swords of my own design. Who am I?
+          <h3 class="rule-title" id="clue-title">Clue # 0</h3>
+          <p class="rule-instructions" id="clue-slot">
+            <!-- dynamic content -->
           </p>
         </div>
       </div>
 
       <div class="col-six">
         <div class="box4">
-          <h3 class="rule-title">Clue # 1 | Image</h3>
+          <h3 class="rule-title" id="clue-img-title">Clue # 0 | Image</h3>
           <div class="clue-img-wrap">
-            <img class="clue-img" src="/img/img1.jpg" />
-          </div>
-          <div class="clue-btn-wrap">
-            <!-- In the 2004 movie adaptation, I was altered to be an assassin and Thule Society member 
-            renowned for my swordsmanship and using signature swords of my own design. Who am I? -->
-            <!-- <button class="clue-btn">HUNT</button> -->
+            <img class="clue-img" id="clue-img-slot" src="/img/img-0.jpg" />
           </div>
         </div>
       </div>
@@ -139,7 +133,7 @@
 
 <!-- /////////////////////////////////////////// -->
   
-<form class="answer-form" id="answer-form">
+<form class="answer-form hidden" id="answer-form">
   <legend class="answer-form-legend">Does the Hero Search match the Clues Given?</legend>
 
   <div class="question-box" id="question-box">

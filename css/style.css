@@ -16,6 +16,8 @@
   --font-family: 'Lato', sans-serif;
 }
 
+.hidden { display: none; }
+
 /* GLOBAL ELEMENTS */
 html, body {
   min-width: 315px;
@@ -434,6 +436,17 @@ ul, li {
   background-image: linear-gradient(to bottom right, red, #ED8F03);
 }
 
+
+.feedback {
+  line-height: 2rem;
+  font-size: 1.1rem;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.continue-btn-wrap {
+  margin-bottom: 7vh;
+}
 
 
 /* FOOTER SECTION */

@@ -5,7 +5,7 @@ function toggleRules() {
   $('#find-box-wrap').toggle(false);
   $('#rule-box').fadeIn(3000).delay(500);
   $('#clue-box').toggle(false);
-  $('#game-rules').html(STORE.gameRules);
+  $('#game-rules').html(STATS.gameRules);
   $('#results-title').toggle(false);
   $('#answer-form').toggle(false);
   $('#play-btn').focus();
@@ -25,10 +25,8 @@ function countdownTimer() {
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   
-  // Output the result in an element with id="demo"
   $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
   
-  // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
     $('#rule-box').toggle(false);
@@ -38,22 +36,37 @@ function countdownTimer() {
   }, 1000);
 }
 
+function renderClueDetails(n) {
+  // let n = STATS.questionNumber;
+  console.log('questionNumber: ', n);
+
+  $('#clue-title').html(`Clue # ${n}`);
+  $('#clue-slot').html(STORE[n - 1]);
+  $('#clue-img-title').html(`Clue # ${n} | Image`);
+
+  var imgPath = `/img/img-${n}.jpg`;
+  $('#clue-img-slot').attr('src',`${imgPath}`);
+}
+
 // Play button click actions
 function handlePlayClick() {
   $('#play-btn').on('click', function() {
     countdownTimer();
-
+    
     $('#rule-box').slideUp(2000);
     $('#clue-box').fadeIn(3000);
-    $('#clue-1').html(STORE.clue1);
     $('#hunt-btn').focus();
     $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    var n = STATS.questionNumber;
+
+    renderClueDetails(n);
   });
 }
 
-function getDataFromSearchApi(searchTerm) {
+function getDataFromComicVineComicsApi(searchTerm) {
   let s = `${searchTerm}`;
-  var search = API.surl() + s;
+  var search = API_COMICS.surl() + s;
 
   let settings = {
     url: `${search}`,
@@ -62,24 +75,6 @@ function getDataFromSearchApi(searchTerm) {
   };
 
   $.ajax(settings);
-
-  // // $.getJSON(search, callback);
-  // $.getJSON(search, function(data) {
-  //   var r = data.results;
-  //   renderResult(r);
-  // });
-
-  // function getDataFromApi(searchTerm, callback) {
-  //   const qObj = {
-  //     url: 'https://comicvine.gamespot.com/api/search/',
-  //     query: `${searchTerm}`,
-  //     limit: 5,
-  //     api_key: 'AIzaSyBCReTi3daKrCxSG-ftR4ed6GRhdlcME9A',
-  //     format: 'json',
-  //   }
-  
-  //   $.getJSON(TUBE_SEARCH_URL, qObj, callback);
-  // }
 }
 
 // Hunt button click actions
@@ -94,9 +89,10 @@ function handleHuntClick() {
     const queryTerm = $('#find-box').val();
 
     if (queryTerm == "" || queryTerm == " " || queryTerm == null) {
+      renderNoResult("No Match Found");
       return false;
     } else {
-      getDataFromSearchApi(queryTerm);
+      getDataFromComicVineComicsApi(queryTerm);
     }
   });
 
@@ -120,9 +116,22 @@ function renderResult(result) {
   for (let i = 0; i < result.length; i++) {
     var img = result[i].image.original_url;
     var name = result[i].name;
+
     var realName = result[i].real_name;
+    if (!realName) {
+      realName = " - ";
+    } else {
+      realName = realName;
+    }
+
     var publisher = result[i].publisher.name;
+
     var deck = result[i].deck;
+    if (!deck) {
+      deck = " - ";
+    } else {
+      deck = deck;
+    }
 
     $('#js-result').append(
       `
@@ -164,18 +173,14 @@ function returnResponse(data){
     $('#find-box').val("");
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#hunt-btn').focus();
-    renderNoResult();
-    // $('#no-match-found').toggle(true);
-    $('#incorrect-answer').toggle(false);
   }
 }
 
-function renderNoResult() {
+function renderNoResult(value) {
   $('#js-result').html(
     `
       <div class="row js-result-row" id="no-match-hunt-again-row">
-        <h3 class="rule-title no-match-found" id="no-match-found">No Matches Found!</h3>
-        <h3 class="rule-title incorrect-answer" id="incorrect-answer">Incorrect Answer!</h3>
+        <h3 class="rule-title no-match-found" id="no-match-incorrect-answer">${value}!</h3>
         <h4 class="rule-title hunt-again" id="hunt-again">Hunt Again!</h4>
       </div>
     `
@@ -183,20 +188,16 @@ function renderNoResult() {
 }
 
 function renderQuestionSelections() {
-  // let n = STATS.questionNumber;
   let n = STATS.questionNumber - 1;
-
   let sMax = QSTORE[n].choices.length;
-  console.log('sMax: ', sMax);
-
   let e = "";
 
   for (let i = 1; i <= sMax; i++) {
-    // Assign option labels
+    // Assign value from STORE to option labels
     e = "lbl-option-" + i;
     $(`#${e}`).html(QSTORE[n].choices[i - 1]);
 
-    // Assign input values
+    // Assign value from STORE to input values
     e = "option-" + i;
     $(`#${e}`).val(QSTORE[n].choices[i - 1]);
   }
@@ -204,41 +205,97 @@ function renderQuestionSelections() {
 
 function clearResults() {
   let queryTerm = "";
-  getDataFromSearchApi(queryTerm);
+  getDataFromComicVineComicsApi(queryTerm);
+}
+
+function toggleSearchResults() {
+  $('#answer-form').toggle(false);
+  $('input[name="radio"]').prop('checked', false);
+  $('#results-title').toggle(false);
+  $('.js-result-row').toggle(false);
 }
 
 function handleOkayClick() {
-  // $('#okay-btn').on('click', function() {
-    let optionSelected = $('input:checked').val();
-    console.log('Hero Selected: ', optionSelected);
+  let optionSelected = $('input:checked').val();
+  console.log('Hero Selected: ', optionSelected);
 
-    let n = STATS.questionNumber - 1;
+  let nx = STATS.questionNumber - 1;
 
-    if (optionSelected === QSTORE[n].answer) {
-      // Feedback if correct
-      
-    } else {
-      // Feedback if wrong
-      $('#answer-form').toggle(false);
-      $('input[name="radio"]').prop('checked', false);
-      $('#clue-box').toggle(true);
-      $('#hunt-btn').focus();
-      $('#find-box').select();
-      $('#results-title').toggle(false);
+  if (optionSelected === QSTORE[nx].answer) {
+    // Feedback if correct
+    STATS.questionNumber = STATS.questionNumber + 1;
+    var n = STATS.questionNumber;
 
-      clearResults();
-    }
+    $('#clue-box').toggle(false);
 
-    console.log('handleOkayClick done');
-  // });
+    toggleSearchResults();
+    renderClueDetails(n);
+    renderCorrectAnswer("Correct Answer");
+  } else {
+    // Feedback if wrong
+    $('#clue-box').toggle(true);
+    $('#hunt-btn').focus();
+    $('#find-box').select();
+
+    toggleSearchResults();    
+    renderNoResult("Incorrect Answer");
+  }
+
+  $("html, body").animate({ scrollTop: 0 }, "slow");
+}
+
+function renderCorrectAnswer(value) {
+  let nx = STATS.questionNumber - 1;
+
+  $('#js-result').html(
+    `
+      <div class="correct-feedback-box" id="correct-feedback-box">
+        <h3 class="rule-title no-match-found" id="no-match-incorrect-answer">${value}!</h3>
+        <p class="feedback">${QSTORE[nx - 1].feedback}</p>
+        
+        <div class="clue-btn-wrap continue-btn-wrap">
+          <button class="clue-btn" id="continue-btn">Continue Hero Hunt</button>
+        </div>
+      </div>
+    `
+  );
 }
 
 function handleAnswerFormSubmit() {
   $('#answer-form').on('submit', function(e) {
     e.preventDefault();
-    // Answer Form submit
+    clearResults();
     handleOkayClick();
+    handleContinueClick();
   });
+}
+
+function handleContinueClick() {
+  $('#continue-btn').on('click', function() {
+    var n = STATS.questionNumber;
+
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    $('#correct-feedback-box').toggle(false);
+
+    toggleSearchResults();
+    renderClueDetails(n);
+
+    $('#clue-box').toggle(true);
+  });
+}
+
+function getDataFromComicVineMoviesApi(searchTerm) {
+  let s = `${searchTerm}`;
+  var search = API_MOVIES.surl() + s;
+
+  let settings = {
+    url: `${search}`,
+    type: "GET",
+    dataType: "jsonp",
+  };
+
+  $.ajax(settings);
 }
 
 
@@ -248,8 +305,8 @@ function appStart() {
   handlePlayClick();
   handleHuntClick();
   keypressEnter();
-  // handleOkayClick();
   handleAnswerFormSubmit();
+  handleContinueClick();
 }
 
 $(appStart);
