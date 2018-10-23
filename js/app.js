@@ -338,8 +338,15 @@ function renderMoviesResult(result) {
     var img = result[i].image.original_url;
     var name = result[i].name;
 
+    const formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2
+    });
+
     var revenue = result[i].total_revenue;
-    // revenue = revenue.toString().replace(/(\d)(?=(\d{3})+$)/g);
+    revenue = parseInt(revenue);
+    revenue = formatter.format(revenue);
     if (!revenue) {
       revenue = " - ";
     } else {
@@ -349,9 +356,7 @@ function renderMoviesResult(result) {
     var rating = result[i].rating;
 
     var releaseDate = result[i].release_date;
-    var mydate = new Date(releaseDate).toLocaleDateString();
-    console.warn('date: ', mydate);
-    // releaseDate = Date.parse(releaseDate);
+    releaseDate = new Date(releaseDate).toLocaleDateString();
     if (!releaseDate) {
       releaseDate = " - ";
     } else {

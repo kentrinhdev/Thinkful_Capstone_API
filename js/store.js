@@ -12,7 +12,7 @@ const QSTORE = [
     question: "Which hero is also known as Big Red?",
     choices: ["Batman", "Hellboy", "Deadpool", "Red Tornado"],
     answer: "Hellboy",
-    feedback: "Hellboy is a fictional superhero created by writer-artist Mike Mignola. He said that Hellboy's personality is loosely based off his father being a Korean War guy, a tough guy, one of those guys who would come home with blood all over himself from getting his hand stuck in a piece of machinery. He was so leathery. You knew he could strike one of those old fashioned matches off of his calloused hands. As far as the stories go, Mignola's fascination with ghosts and monsters began at an early age, reading Dracula at age 12 introduced him to Victorian literature and folklore, from which he has never recovered. This clearly had a heavy influence on the creation of Hellboy. In August 1993, Mignola debuted the first appearance of Hellboy in San Diego Comic-Con #2 published by Dark Horse Comics.",
+    feedback: "Hellboy is a fictional superhero created by writer-artist Mike Mignola. As far as the stories go, Mignola's fascination with ghosts and monsters began at an early age, reading Dracula at age 12 introduced him to Victorian literature and folklore, from which he has never recovered. This clearly had a heavy influence on the creation of Hellboy. In August 1993, Mignola debuted the first appearance of Hellboy in San Diego Comic-Con #2 published by Dark Horse Comics.",
   },
 
   {
@@ -33,7 +33,7 @@ const QSTORE = [
 const STORE = [
   "In comic books, I am a creature that was summoned to Earth by Nazi cultist Grigori Rasputin. My real name is Anung Un Rama and I was destined to destroy the world by unleashing the Ogdru Jahad to spread darkness and chaos across existence. I have superhuman abilities that stem from my demonic heritage, but I am also the Earth's first line of defense against occult menaces. I am a large, red-skinned demon with a tail, horns, which I filed off, leaving behind the signature circular stumps on my forehead, and an over-sized right hand made of stone. I am a hero. Who am I?",
   "In the 2004 movie adaptation of the comic book hero described in Clue # 1, at the end of World War II, the Nazis attempt to open a portal to a paranormal dimension in order to defeat the Allies, but are only able to summon a baby demon who is rescued by Allied forces. Sixty years later, the Bureau of Paranormal Research and Defense protects America against dark forces the likes of Rasputin and Kroenen. This movie released on April 2nd with the same title as the hero also known in the film as Big Red played by actor Ron Perlman was directed by Guillermo del Toro. What movie am I?",
-  "From Clue # 2 we found that the 2004 Hellboy movie featured the main cast from the comic books even the facility for the Bureau of Paranormal Research and Defense was featured. The location and buliding that acted as the B.P.R.D. facility shown below is not a set but an actual real-life location. ",
+  "From Clue # 2 we found that the 2004 Hellboy movie featured the main cast from the comic books even the facility for the Bureau of Paranormal Research and Defense was featured. The location and buliding that acted as the B.P.R.D. facility shown below is not a set but an actual real-life location. It is a National Monument. What am I?",
 ];
 
 const API_COMICS = {
