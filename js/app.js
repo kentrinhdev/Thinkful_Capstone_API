@@ -349,6 +349,8 @@ function renderMoviesResult(result) {
     var rating = result[i].rating;
 
     var releaseDate = result[i].release_date;
+    var mydate = new Date(releaseDate).toLocaleDateString();
+    console.warn('date: ', mydate);
     // releaseDate = Date.parse(releaseDate);
     if (!releaseDate) {
       releaseDate = " - ";
