@@ -100,6 +100,8 @@ function handleHuntClick() {
         getDataFromComicVineComicsApi(queryTerm);
       } else if (n === 2) {
         getDataFromComicVineMoviesApi(queryTerm);
+      } else if (n === 3) {
+        getDataFromGoogleMapsApi(queryTerm)
       } else {
         console.warn('not 1 or 2');
       }
@@ -127,23 +129,10 @@ function keypressEnter() {
 function renderComicsResult(result) {
   for (let i = 0; i < result.length; i++) {
     var img = result[i].image.original_url;
-    var name = result[i].name;
-
-    var realName = result[i].real_name;
-    if (!realName) {
-      realName = " - ";
-    } else {
-      realName = realName;
-    }
-
-    var publisher = result[i].publisher.name;
-
-    var deck = result[i].deck;
-    if (!deck) {
-      deck = " - ";
-    } else {
-      deck = deck;
-    }
+    var name = validateResults(result[i].name);
+    var realName = validateResults(result[i].real_name);
+    var publisher = validateResults(result[i].publisher.name);
+    var deck = validateResults(result[i].deck);
 
     $('#js-result').append(
       `
@@ -332,11 +321,22 @@ function getDataFromComicVineMoviesApi(searchTerm) {
   $.ajax(settings);
 }
 
+function validateResults(value) {
+  if (!value) {
+    return " - ";
+  } else {
+    return value;
+  }
+}
+
 // Render results back from api call
 function renderMoviesResult(result) {
   for (let i = 0; i < result.length; i++) {
     var img = result[i].image.original_url;
-    var name = result[i].name;
+    var name = validateResults(result[i].name);
+
+    var revenue = validateResults(result[i].total_revenue);
+    revenue = parseInt(revenue);
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
@@ -344,38 +344,15 @@ function renderMoviesResult(result) {
       minimumFractionDigits: 2
     });
 
-    var revenue = result[i].total_revenue;
-    revenue = parseInt(revenue);
     revenue = formatter.format(revenue);
-    if (!revenue) {
-      revenue = " - ";
-    } else {
-      revenue = revenue;
-    }
 
-    var rating = result[i].rating;
+    var rating = validateResults(result[i].rating);
 
-    var releaseDate = result[i].release_date;
+    var releaseDate = validateResults(result[i].release_date);
     releaseDate = new Date(releaseDate).toLocaleDateString();
-    if (!releaseDate) {
-      releaseDate = " - ";
-    } else {
-      releaseDate = releaseDate;
-    }
 
-    var director = result[i].writers[1].name;
-    if (!director) {
-      director = " - ";
-    } else {
-      director = director;
-    }
-
-    var deck = result[i].deck;
-    if (!deck) {
-      deck = " - ";
-    } else {
-      deck = deck;
-    }
+    var director = validateResults(result[i].writers[1].name);
+    var deck = validateResults(result[i].deck);
 
     $('#js-result').append(
       `
@@ -400,6 +377,28 @@ function renderMoviesResult(result) {
       `
     );
   }
+}
+
+function getDataFromGoogleMapsApi(searchTerm) {
+  // var url = "https://www.google.com/maps/embed/v1/";
+
+  // const query = {
+  // input: `${searchTerm}`,
+  // key: API_MAPS.key,
+  // }
+
+  let s = `${searchTerm}`;
+  var search = API_MAPS.surl() + s;
+
+  let settings = {
+    url: `${search}`,
+    type: "GET",
+    dataType: "jsonp",
+  };
+
+  // $.ajax(settings);
+
+  $.getJSON(url, query);
 }
 
 
