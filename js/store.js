@@ -60,14 +60,28 @@ const API_MOVIES = {
   },
 };
 
+// const API_MAPS = {
+//   url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?api_key=",
+//   key: "AIzaSyBcQGv70PhcqFPah09M494cKkMu2gvCMh4",
+//   limit: "&limit=5",
+//   format: "&format=json",
+//   callback: "&json_callback=returnResponse",
+//   query: "&input=",
+//   surl: function() {
+//     return this.url + this.key + this.limit + this.format + this.callback + this.query;
+//   },
+// };
+
 const API_MAPS = {
-  url: "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?api_key=",
-  key: "07ce68f63281224c6c07468a43c3f3947c29060f",
-  limit: "&limit=5",
-  format: "&format=json",
+  url: "https://api.foursquare.com/v2/venues/search?",
+  clientid: "&client_id=K1JMJPEZORIQFY4UIFXHQTHV0DQSQZPH043PCDXBWGOMWVFY",
+  clientsecret: "&client_secret=FOK30KASU3C3FL011EXJCMQEHXLCNTT2EANEKJXXYGBHMR2R",
   callback: "&json_callback=returnResponse",
-  query: "&input=",
+  limit: "&limit=5",
+  version: "&v=20181024",
+  near: "&near=prague",
+  query: "&query=",
   surl: function() {
-    return this.url + this.key + this.limit + this.format + this.callback + this.query;
+    return this.url + this.clientid + this.clientsecret + this.callback + this.limit + this.version + this.near + this.query;
   },
 };

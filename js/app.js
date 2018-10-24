@@ -101,7 +101,7 @@ function handleHuntClick() {
       } else if (n === 2) {
         getDataFromComicVineMoviesApi(queryTerm);
       } else if (n === 3) {
-        getDataFromGoogleMapsApi(queryTerm)
+        getDataFromGoogleMapsApi(queryTerm);
       } else {
         console.warn('not 1 or 2');
       }
@@ -178,6 +178,8 @@ function returnResponse(data){
       renderComicsResult(r);
     } else if (n === 2) {
       renderMoviesResult(r);
+    } else if (n === 3) {
+      renderMapsResult(r);
     } else {
       console.warn('not 1 or 2');
     }
@@ -380,25 +382,29 @@ function renderMoviesResult(result) {
 }
 
 function getDataFromGoogleMapsApi(searchTerm) {
-  // var url = "https://www.google.com/maps/embed/v1/";
-
-  // const query = {
-  // input: `${searchTerm}`,
-  // key: API_MAPS.key,
-  // }
-
   let s = `${searchTerm}`;
   var search = API_MAPS.surl() + s;
 
   let settings = {
     url: `${search}`,
     type: "GET",
-    dataType: "jsonp",
+    dataType: "json",
   };
 
-  // $.ajax(settings);
+  $.ajax(settings);
 
-  $.getJSON(url, query);
+  // var url = "https://maps.googleapis.com/maps/api/place/textsearch/json";
+
+  // const param = {
+  //   query: `${searchTerm}`,
+  //   key: API_MAPS.key,
+  // }
+
+  // $.getJSON(url, param, callback);
+}
+
+function renderMapResult(result) {
+  console.warn('renderMapResult result: ', result);
 }
 
 
