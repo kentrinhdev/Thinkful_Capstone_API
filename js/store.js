@@ -19,14 +19,14 @@ const QSTORE = [
     question: "What movie released in 2004 with same title as hero is also known as Big Red?",
     choices: ["Deadpool", "Hellboy", "The Amazing Spider-Man", "Hellboy II: The Golden Army"],
     answer: "Hellboy",
-    feedback: "Hellboy is a 2004 American superhero movie directed by Guillermo del Toro starring Ron Perlman, loosely based on the Dark Horse Comics graphic novel Hellboy: Seed of Destruction by Mike Mignola. Del Toro for years considered this film a dream project, and had always wanted to cast Perlman in the lead, but could never secure a budget or studio approval. After the massive success of Blade II (2002), del Toro was offered Blade: Trinity (2004) or Hellboy, and though he briefly considered trying to schedule both in, he chose Hellboy. In the film, a demonic beast-turned superhero known as Hellboy, secretly works to keep the world safe from paranormal threats with his team, the Bureau of Paranormal Research and Defense. In the comics, the B.P.R.D. initially had strong links to the United States Army Air Forces and was based at a military airbase in New York. By 1948, the Bureau relocated to a custom built facility in Fairfield, Connecticut then for the film eventually ended up in an abandoned research facility in Colorado New Jersey.",
+    feedback: "Hellboy is a 2004 American superhero movie directed by Guillermo del Toro starring Ron Perlman based on the comic book by Mike Mignola. Del Toro for years considered this film a dream project, and had always wanted to cast Perlman in the lead, but could never secure a budget or studio approval. After the massive success of Blade II (2002), del Toro was offered Blade: Trinity (2004) or Hellboy, and though he briefly considered trying to schedule both in, he chose Hellboy. In the film, a demonic beast-turned superhero known as Hellboy, secretly works to keep the world safe from paranormal threats with his team, the Bureau of Paranormal Research and Defense. In the comics, the B.P.R.D. initially had strong links to the United States Army Air Forces and was based at a military airbase in New York. By 1948, the Bureau relocated to a custom built facility in Fairfield, Connecticut then for the film eventually ended up in an abandoned research facility in Colorado New Jersey.",
   },
 
   {
-    question: "Which hero is also known as Wall Crawler?",
-    choices: ["Superman", "Venom", "Batman", "Spider-Man"],
-    answer: "Spider-Man",
-    feedback: "Spider-Man is a fictional superhero created by writer-editor Stan Lee and writer-artist Steve Ditko. He first appeared in the anthology comic book Amazing Fantasy #15 in the Silver Age of Comic Books released in August 1962 published by Marvel Comics. When Kirby showed Stan Lee the first six pages he had drawn, Lee recalled that he hated the way Kirby was doing it! Not that he did it badly--it just wasn't the character that Lee wanted. It was too heroic. Instead, Lee turned to Steve Ditko, who developed a visual style Lee found satisfactory. In the comics, Spider-Man is the alias of Peter Parker an orphan raised by his Aunt May and Uncle Ben in New York City after his parents Richard and Mary Parker were killed in a plane crash. Lee and Ditko had the character deal with the struggles of adolescence and financial issues, and accompanied him with many supporting characters, such as J. Jonah Jameson, Flash Thompson, Harry Osborn, romantic interests Gwen Stacy and Mary Jane Watson, and foes such as Doctor Octopus, Green Goblin and Venom. His origin story has him acquiring spider-related abilities after a bite from a radioactive spider which include clinging to surfaces, shooting spider-webs from wrist-mounted devices, and detecting danger with his Spider-Sense.",
+    question: "Which location acted as the B.P.R.D.?",
+    choices: ["National Technical Museum", "Cal Poly Pomona Classroom, Laboratory & Administration Building", "Bradbury Building", "National Memorial on the Vitkov Hill"],
+    answer: "National Memorial on the Vitkov Hill",
+    feedback: "This scene in the 2004 Hellboy movie was taken at National Monument at Vítkov Hill in Prague. The massive building of National Monument that was built in the years 1927–1932 in honour of Czech legionary and foundation of the former Czechoslovakia. The Bureau for Paranormal Research and Defence, where Hellboy resided in a more or less voluntary prison, was nothing else but the National Monument in Vítkov. For Guillermo del Toro and Ron Perlman, the actor of Hellboy, Prague had already been an old acquaintance. Not long before that they filmed Blade II, and it was perhaps the reason why the Mexican director managed to cast Perlman before Vin Diesel, who was the studio's original choice.",
   },
 ];
 
@@ -59,18 +59,6 @@ const API_MOVIES = {
     return this.url + this.key + this.limit + this.format + this.callback + this.query;
   },
 };
-
-// const API_MAPS = {
-//   url: "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/findplacefromtext/json?api_key=",
-//   key: "AIzaSyBcQGv70PhcqFPah09M494cKkMu2gvCMh4",
-//   limit: "&limit=5",
-//   format: "&format=json",
-//   callback: "&json_callback=returnResponse",
-//   query: "&input=",
-//   surl: function() {
-//     return this.url + this.key + this.limit + this.format + this.callback + this.query;
-//   },
-// };
 
 const API_MAPS = {
   url: "https://api.foursquare.com/v2/venues/search?",
