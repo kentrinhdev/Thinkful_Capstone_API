@@ -101,9 +101,9 @@ function handleHuntClick() {
       } else if (n === 2) {
         getDataFromComicVineMoviesApi(queryTerm);
       } else if (n === 3) {
-        getDataFromGoogleMapsApi(queryTerm);
+        getDataFromMapsApi(queryTerm);
       } else {
-        console.warn('not 1 or 2');
+        console.warn('not 1 or 2 or 3');
       }
       
     }
@@ -161,8 +161,7 @@ function renderComicsResult(result) {
 // Called through ajax parameters
 function returnResponse(data){
   var r = data.results;
-
-  console.log(r);
+  console.warn('data.results', r);
 
   if (r.length > 0) {
     $('#clue-box').toggle(false);
@@ -171,24 +170,22 @@ function returnResponse(data){
     $('#answer-form').toggle(true);
     $("html, body").animate({ scrollTop: 0 }, "slow");
     renderQuestionSelections();
-    
-    let n = STATS.questionNumber;
-
-    if (n === 1) {
-      renderComicsResult(r);
-    } else if (n === 2) {
-      renderMoviesResult(r);
-    } else if (n === 3) {
-      renderMapsResult(r);
-    } else {
-      console.warn('not 1 or 2');
-    }
-
-    
   } else {
     $('#find-box').val("");
     $("html, body").animate({ scrollTop: $(document).height() }, "slow");
     $('#hunt-btn').focus();
+  }
+
+  let n = STATS.questionNumber;
+
+  if (n === 1) {
+    renderComicsResult(r);
+  } else if (n === 2) {
+    renderMoviesResult(r);
+  } else if (n === 3) {
+    renderMapResult(r);
+  } else {
+    console.warn('not 1 or 2 or 3');
   }
 }
 
@@ -381,30 +378,116 @@ function renderMoviesResult(result) {
   }
 }
 
-function getDataFromGoogleMapsApi(searchTerm) {
-  let s = `${searchTerm}`;
-  var search = API_MAPS.surl() + s;
+function getDataFromMapsApi(searchTerm) {
+  // let s = `${searchTerm}`;
+  // var search = API_MAPS.surl() + s;
 
-  let settings = {
-    url: `${search}`,
-    type: "GET",
-    dataType: "json",
-  };
+  // let settings = {
+  //   url: `${search}`,
+  //   type: "GET",
+  //   dataType: "json",
+  // };
 
-  $.ajax(settings);
+  // $.ajax(settings);
 
-  // var url = "https://maps.googleapis.com/maps/api/place/textsearch/json";
 
-  // const param = {
-  //   query: `${searchTerm}`,
-  //   key: API_MAPS.key,
-  // }
 
-  // $.getJSON(url, param, callback);
+  // url: "https://api.foursquare.com/v2/venues/search?",
+  // clientid: "&client_id=K1JMJPEZORIQFY4UIFXHQTHV0DQSQZPH043PCDXBWGOMWVFY",
+  // clientsecret: "&client_secret=FOK30KASU3C3FL011EXJCMQEHXLCNTT2EANEKJXXYGBHMR2R",
+  // callback: "&json_callback=returnResponse",
+  // limit: "&limit=5",
+  // version: "&v=20181024",
+  // near: "&near=prague",
+  // query: "&query=",
+
+
+
+  var url = "https://api.foursquare.com/v2/venues/search?";
+
+  const param = {
+    client_id: "K1JMJPEZORIQFY4UIFXHQTHV0DQSQZPH043PCDXBWGOMWVFY",
+    client_secret: "FOK30KASU3C3FL011EXJCMQEHXLCNTT2EANEKJXXYGBHMR2R",
+    limit: 5,
+    v: "20181025",
+    near: "prague",
+    query: `${searchTerm}`,
+  }
+
+  $.getJSON(url, param, function (data) {
+    console.error('getJSON data.response.venues', data.response.venues);
+    var r = data.response.venues;
+
+    returnResponseForMap(r);
+  });
+}
+
+// Handle response depending on number of results returned
+// Called through ajax parameters
+function returnResponseForMap(data){
+  var r = data;
+  console.warn('returnResponseForMap data', r);
+
+  if (r.length > 0) {
+    $('#clue-box').toggle(false);
+    $('#results-title').toggle(true);
+    $('#no-match-hunt-again-row').toggle(false);
+    $('#answer-form').toggle(true);
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    renderQuestionSelections();
+  } else {
+    $('#find-box').val("");
+    $("html, body").animate({ scrollTop: $(document).height() }, "slow");
+    $('#hunt-btn').focus();
+  }
+
+  let n = STATS.questionNumber;
+
+  if (n === 1) {
+    renderComicsResult(r);
+  } else if (n === 2) {
+    renderMoviesResult(r);
+  } else if (n === 3) {
+    renderMapResult(r);
+  } else {
+    console.warn('not 1 or 2 or 3');
+  }
 }
 
 function renderMapResult(result) {
-  console.warn('renderMapResult result: ', result);
+  for (let i = 0; i < result.length; i++) {
+    // var img = result[i].image.original_url;
+    var name = validateResults(result[i].name);
+
+    var a1 = validateResults(result[i].location.formattedAddress[0]);
+    var a2 = validateResults(result[i].location.formattedAddress[1]);
+    var a3 = validateResults(result[i].location.formattedAddress[2]);
+    var address = `<br> ${a1} <br> ${a2} <br> ${a3}`;
+
+    var lat = validateResults(result[i].location.lat);
+    var lng = validateResults(result[i].location.lng);
+
+    $('#js-result').append(
+      `
+        <div class="js-result-row">
+          <div class="col-six">
+            <div class="result-img">
+              <span>IMAGE PLACEHOLDER</span>
+            </div>
+          </div>
+
+          <div class="col-six">
+            <div class="rule-instructions result-info">
+              <h4 class="movie-title"><span class="result-lbl">Location:</span> ${name}</h4>
+              <h5 class="movie-title"><span class="result-lbl">Address:</span> ${address}</h5>
+              <p class="movie-date"><span class="result-lbl">Latitude:</span> ${lat}</p>
+              <p class="movie-date"><span class="result-lbl">Longitude:</span> ${lng}</p>
+            </div>
+          </div>
+        </div>
+      `
+    );
+  }
 }
 
 
