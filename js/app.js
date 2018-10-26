@@ -1,7 +1,11 @@
 'use strict';
 
+var timer;
+
 // Start app with applicable elements shown/hidden
 function toggleRules() {
+  $('#subnav-timer').toggle(true);
+  $('#subnav-timer-on').toggle(false);
   $('#find-box-wrap').toggle(false);
   $('#rule-box').fadeIn(3000).delay(500);
   $('#clue-box').toggle(false);
@@ -16,23 +20,42 @@ function countdownTimer() {
   var dt = new Date();
   var endTime = dt.setHours( dt.getHours() + 1 );
 
-  var x = setInterval(function() {
+  timer = setInterval(function() {
     var now = new Date().getTime();
-
     var distance = endTime - now;
 
     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
+
     $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
-    
+
     if (distance < 0) {
-      clearInterval(x);
+      // clearInterval(x);
       $('#rule-box').toggle(false);
       $('#clue-box').toggle(false);
     }
   }, 1000);
+}
+
+function resetTimer() {
+  clearInterval(timer);
+}
+
+// Play button actions upon click
+function handlePlayClick() {
+  $('#play-btn').on('click', function() {
+    STATS.timer = true;
+    countdownTimer();
+    
+    $('#rule-box').slideUp(2000);
+    $('#clue-box').fadeIn(3000);
+    $('#hunt-btn').focus();
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+
+    var n = STATS.questionNumber;
+    renderClueDetails(n);
+  });
 }
 
 // Render clue description and image on page
@@ -45,22 +68,6 @@ function renderClueDetails(n) {
 
   var imgPath = `/img/img-${n}.jpg`;
   $('#clue-img-slot').attr('src',`${imgPath}`);
-}
-
-// Play button actions upon click
-function handlePlayClick() {
-  $('#play-btn').on('click', function() {
-    countdownTimer();
-    
-    $('#rule-box').slideUp(2000);
-    $('#clue-box').fadeIn(3000);
-    $('#hunt-btn').focus();
-    $("html, body").animate({ scrollTop: 0 }, "slow");
-
-    var n = STATS.questionNumber;
-
-    renderClueDetails(n);
-  });
 }
 
 // Ajax call to get data from api
@@ -203,6 +210,8 @@ function renderQuestionSelections() {
   let sMax = QSTORE[n].choices.length;
   let e = "";
 
+  $('#question-slot').html(QSTORE[n].question);
+
   for (let i = 1; i <= sMax; i++) {
     // Assign value from STORE to option labels
     e = "lbl-option-" + i;
@@ -290,6 +299,8 @@ function resetGame() {
   STATS.questionNumber = 1;
   STATS.numberCorrect = 0;
   STATS.numberWrong = 0;
+  STATS.timer = false;
+  resetTimer();
 }
 
 // Play Again button actions upon click
@@ -299,17 +310,12 @@ function handlePlayAgainClick() {
     $('#end-game-box').toggle(false);
     resetGame();
     toggleRules();
+    $('#subnav-timer').html("1H | 0M | 0S");
   });
 }
 
 // Show game play ended message
 function renderEndGame() {
-  // $('#subnav-timer').replaceWith(`<span class="subnav-timer" id="subnav-timer">FINISHED</span>`);
-  let hours = 0;
-  let minutes = 0;
-  let seconds = 0;
-  $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
-
   $('#correct-feedback-box').toggle(false);
 
   $('#js-result').html(
@@ -343,6 +349,9 @@ function handleContinueClick() {
       $('#clue-box').toggle(true);
       $('#hunt-btn').focus();
     } else {
+      $('#subnav-timer').toggle(false);
+      $('#subnav-timer-on').toggle(true).html("FINISHED");
+
       renderEndGame();
       $('#play-again-btn').focus();
     }
