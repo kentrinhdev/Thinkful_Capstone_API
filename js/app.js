@@ -38,6 +38,7 @@ function countdownTimer() {
   }, 1000);
 }
 
+// Stop and reset timer back to default
 function resetTimer() {
   clearInterval(timer);
 }
@@ -295,6 +296,7 @@ function handleAnswerFormSubmit() {
   });
 }
 
+// Reset all of the game stats
 function resetGame() {
   STATS.questionNumber = 1;
   STATS.numberCorrect = 0;
@@ -372,6 +374,7 @@ function getDataFromComicVineMoviesApi(searchTerm) {
   $.ajax(settings);
 }
 
+// Validation function to check results
 function validateResults(value) {
   if (!value) {
     return " - ";
@@ -481,6 +484,7 @@ function returnResponseForMap(data){
   }
 }
 
+// Render results back from api call
 function renderMapResult(result) {
   for (let i = 0; i < result.length; i++) {
     // var img = result[i].image.original_url;
