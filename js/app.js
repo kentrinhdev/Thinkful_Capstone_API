@@ -17,28 +17,27 @@ function countdownTimer() {
   var endTime = dt.setHours( dt.getHours() + 1 );
 
   var x = setInterval(function() {
-  var now = new Date().getTime();
+    var now = new Date().getTime();
 
-  var distance = endTime - now;
+    var distance = endTime - now;
 
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  
-  $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
-  
-  if (distance < 0) {
-    clearInterval(x);
-    $('#rule-box').toggle(false);
-    $('#clue-box').toggle(false);
-  }
-
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
+    
+    if (distance < 0) {
+      clearInterval(x);
+      $('#rule-box').toggle(false);
+      $('#clue-box').toggle(false);
+    }
   }, 1000);
 }
 
 // Render clue description and image on page
 function renderClueDetails(n) {
-  console.log('questionNumber: ', n);
+  console.log('Count', n);
 
   $('#clue-title').html(`Clue # ${n}`);
   $('#clue-slot').html(STORE[n - 1]);
@@ -105,11 +104,8 @@ function handleHuntClick() {
       } else {
         console.warn('not 1 or 2 or 3');
       }
-      
     }
   });
-
-  $('#hunt-btn').focus();
 }
 
 // Handle keyboard input for Hunt button
@@ -161,7 +157,7 @@ function renderComicsResult(result) {
 // Called through ajax parameters
 function returnResponse(data){
   var r = data.results;
-  console.warn('data.results', r);
+  console.log('Data Results', r);
 
   if (r.length > 0) {
     $('#clue-box').toggle(false);
@@ -234,10 +230,9 @@ function toggleSearchResults() {
 
 // Okay button actions upon click
 function handleOkayClick() {
+  let nx = STATS.questionNumber - 1;
   let optionSelected = $('input:checked').val();
   console.log('Hero Selected: ', optionSelected);
-
-  let nx = STATS.questionNumber - 1;
 
   if (optionSelected === QSTORE[nx].answer) {
     // Feedback if correct
@@ -249,6 +244,7 @@ function handleOkayClick() {
     toggleSearchResults();
     renderClueDetails(n);
     renderCorrectAnswer("Correct Answer");
+    $('#continue-btn').focus();
   } else {
     // Feedback if wrong
     $('#clue-box').toggle(true);
@@ -290,19 +286,66 @@ function handleAnswerFormSubmit() {
   });
 }
 
+function resetGame() {
+  STATS.questionNumber = 1;
+  STATS.numberCorrect = 0;
+  STATS.numberWrong = 0;
+}
+
+// Play Again button actions upon click
+function handlePlayAgainClick() {
+  // For dynamic DOM element use Event Delegation
+  $('#js-result').on('click', '#play-again-btn', function() {
+    $('#end-game-box').toggle(false);
+    resetGame();
+    toggleRules();
+  });
+}
+
+// Show game play ended message
+function renderEndGame() {
+  // $('#subnav-timer').replaceWith(`<span class="subnav-timer" id="subnav-timer">FINISHED</span>`);
+  let hours = 0;
+  let minutes = 0;
+  let seconds = 0;
+  $('#subnav-timer').html(hours + "H | " + minutes + "M | " + seconds + "S ");
+
+  $('#correct-feedback-box').toggle(false);
+
+  $('#js-result').html(
+    `
+      <div class="end-game-box" id="end-game-box">
+        <h3 class="rule-title no-match-found" id="no-match-incorrect-answer">
+          You finished the Hero Hunt!
+        </h3>
+
+        <div class="clue-btn-wrap continue-btn-wrap">
+          <button class="clue-btn" id="play-again-btn">Play Again</button>
+        </div>
+      </div>
+    `
+  );
+}
+
 // Continue button actions upon click
 function handleContinueClick() {
   $('#continue-btn').on('click', function() {
     var n = STATS.questionNumber;
 
-    $("html, body").animate({ scrollTop: 0 }, "slow");
+    if (n <= 3) {
+      $("html, body").animate({ scrollTop: 0 }, "slow");
 
-    $('#correct-feedback-box').toggle(false);
+      $('#correct-feedback-box').toggle(false);
 
-    toggleSearchResults();
-    renderClueDetails(n);
+      toggleSearchResults();
+      renderClueDetails(n);
 
-    $('#clue-box').toggle(true);
+      $('#clue-box').toggle(true);
+      $('#hunt-btn').focus();
+    } else {
+      renderEndGame();
+      $('#play-again-btn').focus();
+    }
   });
 }
 
@@ -378,31 +421,8 @@ function renderMoviesResult(result) {
   }
 }
 
+// getJSON call to get data from api
 function getDataFromMapsApi(searchTerm) {
-  // let s = `${searchTerm}`;
-  // var search = API_MAPS.surl() + s;
-
-  // let settings = {
-  //   url: `${search}`,
-  //   type: "GET",
-  //   dataType: "json",
-  // };
-
-  // $.ajax(settings);
-
-
-
-  // url: "https://api.foursquare.com/v2/venues/search?",
-  // clientid: "&client_id=K1JMJPEZORIQFY4UIFXHQTHV0DQSQZPH043PCDXBWGOMWVFY",
-  // clientsecret: "&client_secret=FOK30KASU3C3FL011EXJCMQEHXLCNTT2EANEKJXXYGBHMR2R",
-  // callback: "&json_callback=returnResponse",
-  // limit: "&limit=5",
-  // version: "&v=20181024",
-  // near: "&near=prague",
-  // query: "&query=",
-
-
-
   var url = "https://api.foursquare.com/v2/venues/search?";
 
   const param = {
@@ -415,18 +435,16 @@ function getDataFromMapsApi(searchTerm) {
   }
 
   $.getJSON(url, param, function (data) {
-    console.error('getJSON data.response.venues', data.response.venues);
     var r = data.response.venues;
-
     returnResponseForMap(r);
   });
 }
 
 // Handle response depending on number of results returned
-// Called through ajax parameters
+// Called through getJSON parameters
 function returnResponseForMap(data){
   var r = data;
-  console.warn('returnResponseForMap data', r);
+  console.log('Map Data Results', r);
 
   if (r.length > 0) {
     $('#clue-box').toggle(false);
@@ -498,6 +516,7 @@ function appStart() {
   handleHuntClick();
   keypressEnter();
   handleAnswerFormSubmit();
+  handlePlayAgainClick();
 }
 
 $(appStart);
