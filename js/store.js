@@ -1,5 +1,7 @@
 'use strict';
 
+var timer;
+
 const STATS = {
   gameRules: "Your task is to hunt for each of the superhero-related items within the one-hour time limit. You will be given several multi-layered clues. Each clue will lead you to the next clue. Try to find all of the items before the time runs out!",
   timer: false,
@@ -76,4 +78,15 @@ const API_MAPS = {
   surl: function() {
     return this.url + this.clientid + this.clientsecret + this.callback + this.limit + this.version + this.near + this.query;
   },
+};
+
+const ISTORE = {
+  img0: "https://yesfitness.com.ua/wp-content/uploads/2016/03/placeholder-1000x600.jpg",
+  img1: "https://www.likealocalguide.com/media/cache/0f/0a/0f0a0c32fd7c4fb5e9dffc25a99e9f98.jpg",
+  img2: "https://media-cdn.tripadvisor.com/media/photo-s/03/c4/20/92/vitkov-national-monument.jpg",
+  img3: "https://www.prague.eu/object/767/pk-2.jpg",
+  img4: "https://media-cdn.tripadvisor.com/media/photo-s/01/59/b8/a0/national-marionette-theatre.jpg",
+  img5: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/N%C3%A1rodn%C3%AD_muzeum_%28National_Museum%29.jpg/1200px-N%C3%A1rodn%C3%AD_muzeum_%28National_Museum%29.jpg",
+  img6: "https://upload.wikimedia.org/wikipedia/commons/2/21/Pomn%C3%ADk_Mistra_Jana_Husa.JPG",
+  img7: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Stavovsk%C3%A9_divadlo_vstup_1.jpg/1200px-Stavovsk%C3%A9_divadlo_vstup_1.jpg",
 };

@@ -505,3 +505,14 @@ footer {
     width: 48vw;
   }
 }
+
+@media only screen and (min-width: 1580px) {
+  .result-img-map {
+    width: 0;
+    height: 0;
+    padding-top: 0;
+  }
+  .clue-img-map {
+    height: 45vh;
+  }
+}
