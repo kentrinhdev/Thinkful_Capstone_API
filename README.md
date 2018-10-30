@@ -8,6 +8,9 @@ https://api.foursquare.com/v2/venues/search?&client_id=K1JMJPEZORIQFY4UIFXHQTHV0
 // Call to Photos api
 https://api.foursquare.com/v2/venues/4adcda9cf964a520364d21e3/photos?client_id=K1JMJPEZORIQFY4UIFXHQTHV0DQSQZPH043PCDXBWGOMWVFY&client_secret=FOK30KASU3C3FL011EXJCMQEHXLCNTT2EANEKJXXYGBHMR2R&v=20181030
 
+// Build img src url = prefix + size + suffix
+https://igx.4sqi.net/img/general/1000x700/2298178_73h329c-h5iCvK7DNHteIAlx2DgBNiiNSEU6Z70nbuk.jpg
+
 {
 meta: {
 code: 200,
